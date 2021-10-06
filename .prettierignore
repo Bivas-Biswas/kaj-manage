@@ -1,0 +1,8 @@
+node_modules/
+src/styles/main.css
+src/styles/tailwind.css
+tailwind.config.js
+package-lock.json
+CODE_OF_CONDUCT.md
+degub.log
+LICENSE
