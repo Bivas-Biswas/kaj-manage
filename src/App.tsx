@@ -1,10 +1,11 @@
-import React from "react"
+import React, { FC } from "react"
+import Drag from "./learn-dnd/Drag"
 
-const App = () => {
+const App: FC = () => {
   return (
-    <div>
-      <p className="text-9xl bg-gray-400 text-center">Hello World</p>
-    </div>
+    <>
+      <Drag />
+    </>
   )
 }
 
