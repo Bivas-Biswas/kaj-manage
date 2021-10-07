@@ -17,8 +17,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start && npm run build:css",
+    "build": "react-scripts build && npm run build:css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
@@ -61,7 +61,7 @@
     "tailwindcss": "^2.2.16"
   },
   "lint-staged": {
-    "*.{js,jsx, ts,tsx}": "eslint --cache --fix",
-    "*.{js,jsx, ts,tsx, css,md}": "prettier --write"
+    "*.{ts,tsx}": "eslint --cache --fix",
+    "*.{ts,tsx, css,md}": "prettier --write"
   }
 }
