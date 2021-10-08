@@ -110,29 +110,36 @@ const Drag: FC = () => {
   }
 
   return (
-    <DragDropContext
-      onDragStart={onDragstart}
-      onDragUpdate={onDragUpdate}
-      onDragEnd={onDragend}
-    >
-      <Droppable droppableId={"all-coloumns"} direction={"horizontal"} type={"column"}>
-        {(provideed) => (
-          <div
-            {...provideed.droppableProps}
-            ref={provideed.innerRef}
-            className="flex w-100"
-          >
-            {columnOrder.map((columnId: string, index: number) => {
-              const column: Icolumn = columns[columnId]
-              const task: Itask[] = column.taskIds.map((taskId: string) => tasks[taskId])
+    <>
+      <DragDropContext
+        onDragStart={onDragstart}
+        onDragUpdate={onDragUpdate}
+        onDragEnd={onDragend}
+      >
+        <Droppable droppableId={"all-coloumns"} direction={"horizontal"} type={"column"}>
+          {(provideed) => (
+            <div
+              {...provideed.droppableProps}
+              ref={provideed.innerRef}
+              className="flex w-100"
+            >
+              {columnOrder.map((columnId: string, index: number) => {
+                const column: Icolumn = columns[columnId]
+                const task: Itask[] = column.taskIds.map(
+                  (taskId: string) => tasks[taskId]
+                )
 
-              return <Column key={column.id} column={column} tasks={task} index={index} />
-            })}
-            {provideed.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+                return (
+                  <Column key={column.id} column={column} tasks={task} index={index} />
+                )
+              })}
+              {provideed.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+      <p className={"m-3"}>{JSON.stringify(initalData)}</p>
+    </>
   )
 }
 
