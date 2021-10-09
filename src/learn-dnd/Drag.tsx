@@ -1,35 +1,32 @@
-import React, { FC, useState } from "react"
-import { DragDropContext, DragUpdate, Droppable, DropResult } from "react-beautiful-dnd"
-import Data from "./initialData.js"
+import React, { FC, useContext, useEffect } from "react"
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd"
 import Column from "./Column"
-import { Icolumn, IcolumnObj, IintialData, Itask, ItaskObj } from "./interfaces"
+import { Icolumn, Itask } from "../ts/interfaces"
+import { doc, setDoc } from "firebase/firestore"
+import db from "../config/fbConfg"
+import { TaskGlobalContext } from "../context"
+import defaultData from "../data/defaultData"
 
 const Drag: FC = () => {
-  const [initalData, setInitalData] = useState<IintialData>(Data.getList())
-  const tasks: ItaskObj = initalData.tasks
-  const columns: IcolumnObj = initalData.columns
-  const columnOrder: string[] = initalData.columnOrder
+  const { taskData, setTaskData, projectId } = useContext(TaskGlobalContext)
 
-  const onDragstart = () => {
-    // document.body.style.color = 'orange';
-    // document.body.style.transition = 'background-color 0.2s ease';
+  if (!taskData || JSON.stringify(taskData) === "{}") {
+    console.log(taskData)
+    useEffect(() => {
+      const docRef = doc(db, "users", projectId)
+      if (JSON.stringify(taskData) === "{}") {
+        setDoc(docRef, defaultData)
+        setTaskData(defaultData)
+      }
+    }, [])
+    return <h1>loading</h1>
   }
-
-  const onDragUpdate = (update: DragUpdate): void => {
-    // const { destination } = update;
-    // const opacity = destination
-    //   ? destination.index / Object.keys(tasks).length
-    //   : 0;
-    // document.body.style.backgroundColor = `rgba( 153, 141, 217, ${opacity})`;
-  }
-
   const onDragend = (result: DropResult) => {
-    // document.body.style.color = "inherit"
-    // document.body.style.backgroundColor = "inherit"
     const { destination, source, draggableId, type } = result
     /*
      * If drag the element outside the drapable box
      * */
+    const docRef = doc(db, "users", projectId)
     if (!destination) {
       return
     }
@@ -42,20 +39,23 @@ const Drag: FC = () => {
     }
 
     if (type === "column") {
-      const newColumnOrder = Array.from(columnOrder)
+      const newColumnOrder = Array.from(taskData.columnOrder)
       newColumnOrder.splice(source.index, 1)
       newColumnOrder.splice(destination.index, 0, draggableId)
-      const newState = {
-        ...initalData,
+      const payload = {
+        ...taskData,
         columnOrder: newColumnOrder,
       }
-      Data.saveList(newState)
-      setInitalData(newState)
+
+      setTaskData(payload)
+      setDoc(docRef, payload)
       return
     }
 
-    const start = columns[source.droppableId]
-    const finish = columns[destination.droppableId]
+    // @ts-ignore
+    const start = taskData.columns[source.droppableId]
+    // @ts-ignore
+    const finish = taskData.columns[destination.droppableId]
 
     if (start === finish) {
       const newTaskIds = Array.from(start.taskIds)
@@ -72,15 +72,15 @@ const Drag: FC = () => {
         taskIds: newTaskIds,
       }
       // update whole state
-      const newState = {
-        ...initalData,
+      const payload = {
+        ...taskData,
         columns: {
-          ...columns,
+          ...taskData.columns,
           [newColumn.id]: newColumn,
         },
       }
-      Data.saveList(newState)
-      setInitalData(newState)
+      setTaskData(payload)
+      setDoc(docRef, payload)
       return
     }
 
@@ -97,40 +97,44 @@ const Drag: FC = () => {
       ...finish,
       taskIds: finishTaskIds,
     }
-    const newState = {
-      ...initalData,
+    const payload = {
+      ...taskData,
       columns: {
-        ...columns,
+        ...taskData.columns,
         [newStart.id]: newStart,
         [newFinish.id]: newFinish,
       },
     }
-    Data.saveList(newState)
-    setInitalData(newState)
+
+    setTaskData(payload)
+    setDoc(docRef, payload)
   }
 
   return (
     <>
-      <DragDropContext
-        onDragStart={onDragstart}
-        onDragUpdate={onDragUpdate}
-        onDragEnd={onDragend}
-      >
+      <DragDropContext onDragEnd={onDragend}>
         <Droppable droppableId={"all-coloumns"} direction={"horizontal"} type={"column"}>
           {(provideed) => (
             <div
               {...provideed.droppableProps}
               ref={provideed.innerRef}
-              className="flex w-100"
+              className="items-start min-w-min"
             >
-              {columnOrder.map((columnId: string, index: number) => {
-                const column: Icolumn = columns[columnId]
+              {taskData.columnOrder.map((columnId: string, index: number) => {
+                const column: Icolumn = taskData.columns[columnId]
+
                 const task: Itask[] = column.taskIds.map(
-                  (taskId: string) => tasks[taskId]
+                  (taskId: string) => taskData.tasks[taskId]
                 )
 
                 return (
-                  <Column key={column.id} column={column} tasks={task} index={index} />
+                  <Column
+                    key={column.id}
+                    columnId={column.id}
+                    column={column}
+                    tasks={task}
+                    index={index}
+                  />
                 )
               })}
               {provideed.placeholder}
@@ -138,7 +142,7 @@ const Drag: FC = () => {
           )}
         </Droppable>
       </DragDropContext>
-      <p className={"m-3"}>{JSON.stringify(initalData)}</p>
+      <p className={"m-3"}>{JSON.stringify(taskData)}</p>
     </>
   )
 }
