@@ -1,6 +1,8 @@
-import React, { FC } from "react"
-import { Itask } from "./interfaces"
+import React, { FC, useContext } from "react"
+import { Itask } from "../ts/interfaces"
 import { Draggable } from "react-beautiful-dnd"
+import { TaskGlobalContext } from "../context"
+import handleEditTask from "../utils/handleEditTask"
 
 interface Iprops {
   task: Itask
@@ -8,19 +10,27 @@ interface Iprops {
 }
 
 const Task: FC<Iprops> = ({ task, index }) => {
+  const { projectId, taskData, setTaskData } = useContext(TaskGlobalContext)
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided, snapshot) => (
-        <p
+        <div
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={`m-2 p-2 select-none cursor-pointer border-2 border-gray-500 ${
+          ref={provided.innerRef}
+          className={`p-1 select-none my-1 flex justify-between items-center border-2 border-gray-500 ${
             snapshot.isDragging ? "bg-green-400" : "bg-white"
           }`}
-          ref={provided.innerRef}
         >
-          {task.content}
-        </p>
+          <p>{task.content}</p>
+          <button
+            className={"bg-yellow-100 p-1.5"}
+            onClick={() => handleEditTask(task, projectId, taskData, setTaskData)}
+          >
+            Edit
+          </button>
+        </div>
       )}
     </Draggable>
   )

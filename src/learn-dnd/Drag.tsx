@@ -118,7 +118,7 @@ const Drag: FC = () => {
             <div
               {...provideed.droppableProps}
               ref={provideed.innerRef}
-              className="items-start min-w-min"
+              className="flex items-start min-w-min"
             >
               {taskData.columnOrder.map((columnId: string, index: number) => {
                 const column: Icolumn = taskData.columns[columnId]
@@ -128,13 +128,7 @@ const Drag: FC = () => {
                 )
 
                 return (
-                  <Column
-                    key={column.id}
-                    columnId={column.id}
-                    column={column}
-                    tasks={task}
-                    index={index}
-                  />
+                  <Column key={column.id} column={column} tasks={task} index={index} />
                 )
               })}
               {provideed.placeholder}
