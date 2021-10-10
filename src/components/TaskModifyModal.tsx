@@ -1,13 +1,16 @@
-import React, { FC, useContext, useRef, useState } from "react"
+import React, { FC, useContext, useEffect } from "react"
 import { Icolumn, Itask } from "../ts/interfaces"
 import { TaskGlobalContext } from "../context"
-import handleAddTask from "../utils/handleAddTask"
+import handleAddTaskNextLine from "../utils/handleAddTaskNextLine"
 import { ThandleAddTask } from "../ts/types"
 import handleEditTask from "../utils/handleEditTask"
 import Modal from "react-modal"
+import useInputValue from "../hooks/useTextAreaValue"
 
 Modal.setAppElement("#root")
+
 interface Iprops {
+  btnType?: string
   edittask?: Itask
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   column: Icolumn
@@ -22,7 +25,7 @@ const intialAddNewData = {
   totalTask: 0,
 }
 
-const customStyles = {
+export const customModalStyles = {
   content: {
     top: "50%",
     left: "50%",
@@ -39,33 +42,49 @@ const customStyles = {
  * */
 
 const TaskModifyModal: FC<Iprops> = ({
+  btnType,
   edittask = intialAddNewData,
   setModalIsOpen,
   column,
   modalIsOpen,
 }) => {
   const { projectId, taskData, setTaskData } = useContext(TaskGlobalContext)
-  const textRef = useRef<any>({})
-  const [addNewData, setAddNewData] = useState<Itask>(edittask)
 
-  const onChangeHandler = function (e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const name = e.target.name
-    const value = e.target.value
-    textRef.current[name].style.height = "0px"
-    textRef.current[name].style.height = `${e.target.scrollHeight}px`
-    const newAddNewData = {
-      ...addNewData,
-      [name]: value,
+  const { textRef, addNewData, setAddNewData, onChange } = useInputValue(edittask)
+
+  // for inline add task button
+  const currentId: string = edittask.id
+
+  useEffect(() => {
+    if (btnType === "add-next-btn") {
+      setAddNewData(intialAddNewData)
     }
-    setAddNewData(newAddNewData)
+  }, [])
+
+  const handleOnSaveTask = () => {
+    setModalIsOpen(false)
+    // check the task id emty or not
+    if (btnType === "edit-task-btn") {
+      handleEditTask({ addNewData, projectId, taskData, setTaskData })
+    } else {
+      handleAddTaskNextLine({
+        currentId,
+        btnType,
+        addNewData,
+        column,
+        taskData,
+        projectId,
+        setTaskData,
+      })
+    }
   }
 
   return (
-    <Modal isOpen={modalIsOpen} style={customStyles}>
+    <Modal isOpen={modalIsOpen} style={customModalStyles}>
       <h3 className={"text-3xl my-2"}>Title :</h3>
       <textarea
         ref={(el) => (textRef.current.title = el)}
-        onChange={onChangeHandler}
+        onChange={onChange}
         className={"rounded-md border-2 p-2 overflow-hidden "}
         name={"title"}
         value={addNewData.title}
@@ -74,7 +93,7 @@ const TaskModifyModal: FC<Iprops> = ({
       <textarea
         ref={(el) => (textRef.current.content = el)}
         className={"rounded-md border-2 p-2 overflow-hidden"}
-        onChange={onChangeHandler}
+        onChange={onChange}
         name={"content"}
         value={addNewData.content}
       />
@@ -82,20 +101,7 @@ const TaskModifyModal: FC<Iprops> = ({
         <button className={"bg-red-500 p-1.5 mr-2"} onClick={() => setModalIsOpen(false)}>
           cancel
         </button>
-        <button
-          className={"bg-green-200 p-1.5 mr-2"}
-          onClick={() => {
-            // check the task id emty or not
-            if (edittask.id) {
-              // true - user need to add new data
-              handleEditTask(addNewData, projectId, taskData, setTaskData)
-            } else {
-              // false - user need to edit the exiting data
-              handleAddTask({ addNewData, column, taskData, projectId, setTaskData })
-            }
-            setModalIsOpen(false)
-          }}
-        >
+        <button className={"bg-green-200 p-1.5 mr-2"} onClick={handleOnSaveTask}>
           Save
         </button>
       </div>

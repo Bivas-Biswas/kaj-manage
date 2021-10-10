@@ -3,18 +3,24 @@ import { doc, setDoc } from "firebase/firestore"
 import db from "../config/fbConfg"
 import { Itask } from "../ts/interfaces"
 
-const handleEditTask = async (
-  task: Itask,
-  projectId: TprojectId,
-  taskData: TcontextTaskData,
+type ThandleEditTask = {
+  addNewData: Itask
+  projectId: TprojectId
+  taskData: TcontextTaskData
   setTaskData: TsetContextTaskData
-) => {
-  const title = task.title
-  const content = task.content
-  const docFef = doc(db, "users", projectId)
+}
+const handleEditTask = async ({
+  addNewData,
+  projectId,
+  taskData,
+  setTaskData,
+}: ThandleEditTask) => {
+  const title = addNewData.title
+  const content = addNewData.content
+  const docRef = doc(db, "users", projectId)
 
   const newTask = {
-    ...taskData?.tasks[task.id],
+    ...taskData?.tasks[addNewData.id],
     title,
     content,
   }
@@ -22,10 +28,10 @@ const handleEditTask = async (
     ...taskData,
     tasks: {
       ...taskData?.tasks,
-      [task.id]: newTask,
+      [addNewData.id]: newTask,
     },
   }
-  setDoc(docFef, payload)
+  setDoc(docRef, payload)
   setTaskData(payload)
 }
 

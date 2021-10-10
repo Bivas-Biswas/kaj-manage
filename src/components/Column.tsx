@@ -1,9 +1,12 @@
-import React, { FC } from "react"
+import React, { FC, useContext } from "react"
 import { Icolumn, Itask } from "../ts/interfaces"
 import Task from "./Task"
 import { Draggable, Droppable } from "react-beautiful-dnd"
-import TaskModifyModal from "../components/TaskModifyModal"
+import TaskModifyModal from "./TaskModifyModal"
 import useToggle from "../hooks/useToggel"
+import { TaskGlobalContext } from "../context"
+import handleDeleteColumn from "../utils/handleDeleteColumn"
+import ColumnModifyModal from "./ColumnModifyModal"
 
 interface Iprops {
   column: Icolumn
@@ -12,17 +15,12 @@ interface Iprops {
 }
 
 const Column: FC<Iprops> = ({ column, tasks, index }) => {
-  const [modalIsOpen, setModalIsOpen] = useToggle(false)
+  const [addTaskmodalIsOpen, setAddTaskmodalIsOpen] = useToggle(false)
+  const [editColumnmodalIsOpen, setEditColumnmodalIsOpen] = useToggle(false)
+  const { taskData, setTaskData, projectId } = useContext(TaskGlobalContext)
 
   return (
     <>
-      {modalIsOpen && (
-        <TaskModifyModal
-          modalIsOpen={modalIsOpen}
-          setModalIsOpen={setModalIsOpen}
-          column={column}
-        />
-      )}
       <Draggable draggableId={column.id} index={index}>
         {(provided) => (
           <div
@@ -34,13 +32,43 @@ const Column: FC<Iprops> = ({ column, tasks, index }) => {
             <div className={"flex items-center"}>
               <h1 className={"text-4xl mb-3 select-none"}>{column.title}</h1>
               <p className={"mx-3"}>{column.taskIds.length}</p>
+              <button
+                className={"bg-red-50 p-1"}
+                onClick={() =>
+                  handleDeleteColumn({ column, taskData, projectId, setTaskData })
+                }
+              >
+                Del
+              </button>
+              <button
+                className={"bg-pink-400 p-1 ml-1.5"}
+                onClick={() => setEditColumnmodalIsOpen(true)}
+              >
+                Edit
+              </button>
+              {editColumnmodalIsOpen && (
+                <ColumnModifyModal
+                  columnId={column.id}
+                  setModalIsOpen={setEditColumnmodalIsOpen}
+                  modalIsOpen={editColumnmodalIsOpen}
+                  btnType={"edit-column-btn"}
+                />
+              )}
             </div>
             <button
               className={"bg-green-400 px-2 py-1"}
-              onClick={() => setModalIsOpen(false)}
+              onClick={() => setAddTaskmodalIsOpen(false)}
             >
               Add
             </button>
+            {addTaskmodalIsOpen && (
+              <TaskModifyModal
+                btnType={"add-task-btn"}
+                modalIsOpen={addTaskmodalIsOpen}
+                setModalIsOpen={setAddTaskmodalIsOpen}
+                column={column}
+              />
+            )}
             <Droppable droppableId={column.id} type={"task"}>
               {(provided, snapshot) => (
                 <div

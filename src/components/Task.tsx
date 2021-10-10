@@ -2,10 +2,9 @@ import React, { FC, useContext } from "react"
 import { Icolumn, Itask } from "../ts/interfaces"
 import { Draggable } from "react-beautiful-dnd"
 import { TaskGlobalContext } from "../context"
-import { doc, setDoc } from "firebase/firestore"
-import db from "../config/fbConfg"
 import useToggle from "../hooks/useToggel"
-import TaskModifyModal from "../components/TaskModifyModal"
+import TaskModifyModal from "./TaskModifyModal"
+import handleDeleteTask from "../utils/handleDeleteTask"
 
 interface Iprops {
   task: Itask
@@ -15,41 +14,31 @@ interface Iprops {
 
 const Task: FC<Iprops> = ({ task, index, column }) => {
   const { projectId, taskData, setTaskData } = useContext(TaskGlobalContext)
-  const [modalIsOpen, setModalIsOpen] = useToggle(false)
-
-  const handleDeleteTask = async () => {
-    const { [task.id]: removeTask, ...newTasks } = taskData?.tasks
-    const newColumn = column.taskIds.filter((taskId) => taskId !== task.id)
-
-    const payload = {
-      ...taskData,
-      tasks: {
-        ...newTasks,
-        totalTask: taskData?.tasks.totalTask - 1,
-      },
-      columns: {
-        ...taskData?.columns,
-        [column.id]: {
-          ...column,
-          taskIds: newColumn,
-        },
-      },
-    }
-    const docRef = doc(db, "users", projectId)
-    setDoc(docRef, payload)
-    setTaskData(payload)
-  }
+  const [editTasktModalIsOpen, setEditTaskModalIsOpen] = useToggle(false)
+  const [addNextTaskmodalIsOpen, setAddTaskModalIsOpen] = useToggle(false)
 
   return (
     <>
-      {modalIsOpen && (
+      {editTasktModalIsOpen && (
         <TaskModifyModal
-          modalIsOpen={modalIsOpen}
-          setModalIsOpen={setModalIsOpen}
+          btnType={"edit-task-btn"}
+          modalIsOpen={editTasktModalIsOpen}
+          setModalIsOpen={setEditTaskModalIsOpen}
           edittask={task}
           column={column}
         />
       )}
+
+      {addNextTaskmodalIsOpen && (
+        <TaskModifyModal
+          btnType={"add-next-btn"}
+          edittask={task}
+          modalIsOpen={addNextTaskmodalIsOpen}
+          setModalIsOpen={setAddTaskModalIsOpen}
+          column={column}
+        />
+      )}
+
       <Draggable draggableId={task.id} index={index}>
         {(provided, snapshot) => (
           <div
@@ -60,15 +49,27 @@ const Task: FC<Iprops> = ({ task, index, column }) => {
               snapshot.isDragging ? "bg-green-400" : "bg-white"
             }`}
           >
-            <p>{task.content}</p>
+            <p className={"break-all"}>{task.content}</p>
             <button
               className={"bg-yellow-100 p-1.5"}
-              onClick={() => setModalIsOpen(true)}
+              name={"edit"}
+              onClick={() => setEditTaskModalIsOpen(true)}
             >
               Edit
             </button>
-            <button className={"bg-red-400 p-1.5"} onClick={() => handleDeleteTask()}>
+            <button
+              className={"bg-red-400 p-1.5"}
+              onClick={() =>
+                handleDeleteTask({ task, projectId, column, taskData, setTaskData })
+              }
+            >
               Delete
+            </button>
+            <button
+              className={"bg-yellow-100 p-1.5"}
+              onClick={() => setAddTaskModalIsOpen(true)}
+            >
+              Add Next
             </button>
           </div>
         )}

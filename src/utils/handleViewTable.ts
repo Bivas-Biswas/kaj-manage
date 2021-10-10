@@ -7,7 +7,7 @@ const handleChangeView = (
   taskData: TcontextTaskData,
   setTaskData: TsetContextTaskData
 ) => {
-  const docFef = doc(db, "users", projectId)
+  const docRef = doc(db, "users", projectId)
   let payload = {}
   switch (taskData?.viewTable) {
     case "horizontal":
@@ -15,21 +15,18 @@ const handleChangeView = (
         ...taskData,
         viewTable: "vertical",
       }
-
-      setDoc(docFef, payload)
-      setTaskData(payload)
       break
     case "vertical":
       payload = {
         ...taskData,
         viewTable: "horizontal",
       }
-      setDoc(docFef, payload)
-      setTaskData(payload)
       break
     default:
       break
   }
+  setDoc(docRef, payload)
+  setTaskData(payload)
 }
 
 export default handleChangeView
