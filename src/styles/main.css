@@ -9979,6 +9979,10 @@ video {
   cursor: not-allowed;
 }
 
+.cursor-grab {
+  cursor: grab;
+}
+
 .select-none {
   -webkit-user-select: none;
           user-select: none;
@@ -39225,6 +39229,10 @@ video {
     cursor: not-allowed;
   }
 
+  .sm\:cursor-grab {
+    cursor: grab;
+  }
+
   .sm\:select-none {
     -webkit-user-select: none;
             user-select: none;
@@ -68457,6 +68465,10 @@ video {
 
   .md\:cursor-not-allowed {
     cursor: not-allowed;
+  }
+
+  .md\:cursor-grab {
+    cursor: grab;
   }
 
   .md\:select-none {
@@ -97693,6 +97705,10 @@ video {
     cursor: not-allowed;
   }
 
+  .lg\:cursor-grab {
+    cursor: grab;
+  }
+
   .lg\:select-none {
     -webkit-user-select: none;
             user-select: none;
@@ -126927,6 +126943,10 @@ video {
     cursor: not-allowed;
   }
 
+  .xl\:cursor-grab {
+    cursor: grab;
+  }
+
   .xl\:select-none {
     -webkit-user-select: none;
             user-select: none;
@@ -156159,6 +156179,10 @@ video {
 
   .\32xl\:cursor-not-allowed {
     cursor: not-allowed;
+  }
+
+  .\32xl\:cursor-grab {
+    cursor: grab;
   }
 
   .\32xl\:select-none {
