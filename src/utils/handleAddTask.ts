@@ -1,16 +1,11 @@
-import { Icolumn } from "../ts/interfaces"
+import { ThandleAddTask } from "../ts/types"
 import { doc, setDoc } from "firebase/firestore"
 import db from "../config/fbConfg"
-import { TcontextTaskData, TprojectId, TsetContextTaskData } from "../ts/types"
 
-const handleAddTask = async (
-  column: Icolumn,
-  taskData: TcontextTaskData,
-  projectId: TprojectId,
-  setTaskData: TsetContextTaskData
-) => {
-  const title = "Adding"
-  const content = "Adding data in column"
+const handleAddTask = async (fn: ThandleAddTask) => {
+  const { addNewData, column, taskData, projectId, setTaskData } = fn
+  const title = addNewData.title
+  const content = addNewData.content
   const totalTask = taskData?.tasks.totalTask + 1
   const newTaskId = `task-${totalTask}`
   const newTask = {
@@ -22,16 +17,15 @@ const handleAddTask = async (
     },
     totalTask,
   }
-  const newColumn = {
-    ...column,
-    taskIds: column.taskIds.push(newTaskId),
-  }
   const payload = {
     ...taskData,
     tasks: newTask,
     columns: {
       ...taskData?.columns,
-      taskIds: newColumn,
+      [column.id]: {
+        ...column,
+        taskIds: [...column.taskIds, newTaskId],
+      },
     },
   }
   const docFef = doc(db, "users", projectId)

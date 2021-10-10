@@ -1,8 +1,6 @@
-// all json data interface
-
 export interface Itask {
   id: string
-  content: string
+  content?: string
   title?: string
   totalTask?: number
 }
@@ -25,4 +23,5 @@ export interface ItaskData {
   tasks: ItaskObj
   columns: IcolumnObj
   columnOrder: string[]
+  viewTable: string
 }

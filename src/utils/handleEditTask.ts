@@ -9,8 +9,8 @@ const handleEditTask = async (
   taskData: TcontextTaskData,
   setTaskData: TsetContextTaskData
 ) => {
-  const title = prompt("Enter Your Title") || task.title
-  const content = prompt("Enter Content") || task.content
+  const title = task.title
+  const content = task.content
   const docFef = doc(db, "users", projectId)
 
   const newTask = {

@@ -8,6 +8,7 @@ import {
   TsetProjectId,
 } from "../ts/types"
 import { ItaskData } from "../ts/interfaces"
+import { Direction } from "react-beautiful-dnd"
 
 export interface ITaskContexProviderProps {
   children: ReactNode
@@ -18,6 +19,8 @@ export interface ITaskContextType {
   setTaskData: TsetContextTaskData
   projectId: TprojectId
   setProjectId: TsetProjectId
+  view: Direction | undefined
+  setView: React.Dispatch<React.SetStateAction<Direction | undefined>>
 }
 
 export const TaskGlobalContext = createContext({} as ITaskContextType)
@@ -27,6 +30,8 @@ const UseTaskGlobalContext = ({ children }: ITaskContexProviderProps) => {
     undefined
   )
   const [projectId, setProjectId] = useState<TprojectId>("projectId")
+
+  const [view, setView] = useState<Direction | undefined>("vertical")
 
   useEffect(() => {
     async function fetch() {
@@ -45,6 +50,8 @@ const UseTaskGlobalContext = ({ children }: ITaskContexProviderProps) => {
         setTaskData,
         projectId,
         setProjectId,
+        view,
+        setView,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import React from "react"
 import { DocumentData } from "@firebase/firestore-types"
-import { ItaskData } from "./interfaces"
+import { Icolumn, Itask, ItaskData } from "./interfaces"
+import handleAddTask from "../utils/handleAddTask"
 
 // context types
 
@@ -13,3 +14,11 @@ export type TcontextTaskData = DocumentData | undefined | ItaskData
 export type TsetContextTaskData = React.Dispatch<
   React.SetStateAction<DocumentData | undefined | ItaskData>
 >
+
+export type ThandleAddTask = {
+  addNewData: Itask
+  column: Icolumn
+  taskData: TcontextTaskData
+  projectId: TprojectId
+  setTaskData: TsetContextTaskData
+}

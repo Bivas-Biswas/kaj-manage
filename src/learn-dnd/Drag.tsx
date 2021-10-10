@@ -6,12 +6,12 @@ import { doc, setDoc } from "firebase/firestore"
 import db from "../config/fbConfg"
 import { TaskGlobalContext } from "../context"
 import defaultData from "../data/defaultData"
+import handleChangeView from "../utils/handleViewTable"
 
 const Drag: FC = () => {
   const { taskData, setTaskData, projectId } = useContext(TaskGlobalContext)
 
   if (!taskData || JSON.stringify(taskData) === "{}") {
-    console.log(taskData)
     useEffect(() => {
       const docRef = doc(db, "users", projectId)
       if (JSON.stringify(taskData) === "{}") {
@@ -52,9 +52,7 @@ const Drag: FC = () => {
       return
     }
 
-    // @ts-ignore
     const start = taskData.columns[source.droppableId]
-    // @ts-ignore
     const finish = taskData.columns[destination.droppableId]
 
     if (start === finish) {
@@ -112,28 +110,49 @@ const Drag: FC = () => {
 
   return (
     <>
+      <button
+        className={"bg-yellow-100 p-2 m-2"}
+        onClick={() => handleChangeView(projectId, taskData, setTaskData)}
+      >
+        Change View
+      </button>
       <DragDropContext onDragEnd={onDragend}>
-        <Droppable droppableId={"all-coloumns"} direction={"horizontal"} type={"column"}>
-          {(provideed) => (
-            <div
-              {...provideed.droppableProps}
-              ref={provideed.innerRef}
-              className="flex items-start min-w-min"
-            >
-              {taskData.columnOrder.map((columnId: string, index: number) => {
-                const column: Icolumn = taskData.columns[columnId]
+        <Droppable
+          droppableId={"all-coloumns"}
+          direction={taskData?.viewTable}
+          type={"column"}
+        >
+          {(provideed) => {
+            return (
+              <>
+                <div
+                  {...provideed.droppableProps}
+                  ref={provideed.innerRef}
+                  className={` flex ${
+                    taskData?.viewTable === "horizontal" ? "flex-row" : "flex-col"
+                  } items-start min-w-min`}
+                >
+                  {taskData.columnOrder.map((columnId: string, index: number) => {
+                    const column: Icolumn = taskData.columns[columnId]
 
-                const task: Itask[] = column.taskIds.map(
-                  (taskId: string) => taskData.tasks[taskId]
-                )
+                    const task: Itask[] = column.taskIds.map(
+                      (taskId: string) => taskData.tasks[taskId]
+                    )
 
-                return (
-                  <Column key={column.id} column={column} tasks={task} index={index} />
-                )
-              })}
-              {provideed.placeholder}
-            </div>
-          )}
+                    return (
+                      <Column
+                        key={column.id}
+                        column={column}
+                        tasks={task}
+                        index={index}
+                      />
+                    )
+                  })}
+                  {provideed.placeholder}
+                </div>
+              </>
+            )
+          }}
         </Droppable>
       </DragDropContext>
       <p className={"m-3"}>{JSON.stringify(taskData)}</p>
