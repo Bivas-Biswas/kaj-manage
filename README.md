@@ -4,12 +4,12 @@
 
 <!-- PROJECT LOGO -->
 
-# Kaj-Manage
+# Kaj-Manage 🔩
 
 <br />
 <p align="center">
   <a href="https://github.com/Bivas-Biswas/kaj-manage">
-    <img src="https://github.com/Bivas-Biswas/kaj-manage/blob/main/readme/kajmanage_logo.png" alt="Logo">
+    <img src="https://github.com/Bivas-Biswas/kaj-manage/blob/main/readme/kajmanage_logo.png" alt="Logo" width="80px">
   </a>
     <h3 align="center">KajManage</h3>
   <p align="center">
@@ -28,7 +28,7 @@
 
 <!-- TABLE OF CONTENTS -->
 
-# Table of Contents
+# 🛒 Table of Contents
 
 [Contents](#table-of-contents)
 
@@ -43,11 +43,11 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## 📞 About The Project
 
 KajManage, A Task Managing App. We all know about [scrum](https://www.digite.com/agile/scrum-methodology/), The app helps use to create our own custom scum very easily. Also easy to maintain. We can divide task according our scrum. like most popular scrum is [Todo](https://blog.agileskills.de/en/todo-doing-done-and-the-three-scrum-artifacts/) - Todo, Doing Done
 
-## Showcase
+## 📸 Showcase
 
 <!-- <table align="center">
     <tr>
@@ -72,21 +72,21 @@ KajManage, A Task Managing App. We all know about [scrum](https://www.digite.com
     </tr>
 </table> -->
 
-## Task
+## 📑 Task [🔗](https://water-pin-778.notion.site/Devsnest-Internship-Task-57a456c235f64f968867acd5779d9b07)
 
-You have to make a simple to-do list app that has two views. [🔗](https://water-pin-778.notion.site/Devsnest-Internship-Task-57a456c235f64f968867acd5779d9b07)
+You have to make a simple to-do list app that has two views.
 
 - A simple list view to list to-dos grouped by their status. ✅
 - A board view where to-dos are grouped by their status and the user can drag & drop an item between the different statuses (like a kanban board). ✅
 - A to-do should contain: ID, title, description, end date (optional), created at, updated at. ✅
 
-#### Bonus:
+#### 💯 Bonus:
 
 - Add support for templates, so the user can create their own templates to save time when adding similar tasks ✅
 
 Feel free to add any interesting things that would be useful to you ✅
 
-## Built With
+## 🛠 Built With
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -94,7 +94,7 @@ Feel free to add any interesting things that would be useful to you ✅
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-## Extra Features
+## ♨ Extra Features
 
 ## 👷‍♂️ Basic Structure of the Project
 
@@ -123,7 +123,7 @@ Feel free to add any interesting things that would be useful to you ✅
     |- react-app-env.d.ts
 ```
 
-More Information of subfolder. Go this link [🔗](https://github.com/Bivas-Biswas/kaj-manage/blob/main/subfolder_structure)\
+More Information of subfolder. Go this link [🔗](https://github.com/Bivas-Biswas/kaj-manage/blob/main/subfolder_structure.md/)\
 \*\*\* Here You will be able to learn in depth details of the subfolders used in the project.
 
 <!-- LICENSE -->
