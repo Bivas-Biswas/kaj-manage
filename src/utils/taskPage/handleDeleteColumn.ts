@@ -34,6 +34,7 @@ const handleDeleteColumn = ({
     columns: newColumns,
     columnOrder: newColumnOrder,
     tasks: copyOfTasks,
+    updateDate: new Date(),
   }
 
   setDoc(docRef, payload)

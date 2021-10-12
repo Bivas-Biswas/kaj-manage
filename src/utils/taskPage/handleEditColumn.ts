@@ -40,6 +40,7 @@ const handleEditColumn = ({
         [newColumnId]: newColumn,
       },
       columnOrder: [...taskData?.columnOrder, newColumnId],
+      updateDate: new Date(),
     }
   } else {
     // foredit-column-btn
@@ -52,6 +53,7 @@ const handleEditColumn = ({
           ...addNewData,
         },
       },
+      updateDate: new Date(),
     }
   }
   setDoc(docRef, payload)

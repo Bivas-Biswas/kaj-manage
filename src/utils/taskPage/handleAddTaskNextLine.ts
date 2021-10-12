@@ -49,6 +49,7 @@ const handleAddTaskNextLine = async ({
         taskIds: columnId,
       },
     },
+    updateDate: new Date(),
   }
 
   setDoc(docRef, payload)

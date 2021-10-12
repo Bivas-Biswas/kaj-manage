@@ -25,6 +25,7 @@ const handleDeleteTask = async ({
         taskIds: newColumn,
       },
     },
+    updateDate: new Date(),
   }
 
   setDoc(docRef, payload)

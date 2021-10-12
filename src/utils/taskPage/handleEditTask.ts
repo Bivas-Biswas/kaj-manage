@@ -36,6 +36,7 @@ const handleEditTask = async ({
       ...taskData?.tasks,
       [addNewData.id]: newTask,
     },
+    updateDate: new Date(),
   }
   setDoc(docRef, payload)
   setTaskData(payload)
