@@ -3,7 +3,6 @@
 /.idea
 .eslintcache
 .env
-/tailwind.config.js
 # dependencies
 /node_modules
 /.pnp

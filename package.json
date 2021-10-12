@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
+    "build:css": "postcss src/assets/css/tailwind.css -o src/styles/main.css"
   },
   "eslintConfig": {
     "extends": [
@@ -75,7 +75,7 @@
     "tailwindcss": "^2.2.16"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --cache --fix",
+    "*.{js, jsx, ts,tsx}": "eslint --cache --fix",
     "*.{ts,tsx, css,md, json}": "prettier --write"
   }
 }
