@@ -12,11 +12,7 @@ const Header = () => {
       <Link to={"/"}>
         <h1 className={"text-4xl text-white"}>KajManage</h1>
       </Link>
-      <a
-        href="https://github.com/Bivas-Biswas/kaj-manage"
-        target={"_blank"}
-        rel="noreferrer"
-      >
+      <a href="/" target={"_blank"} rel="noreferrer">
         <GoMarkGithub className={"text-5xl text-white hover:text-black"} />
       </a>
     </div>
