@@ -13,7 +13,7 @@ const defaultData = {
     },
     "column-2": {
       id: "column-2",
-      title: "In progress",
+      title: "Doing",
       taskIds: ["task-1"],
     },
     "column-3": {
