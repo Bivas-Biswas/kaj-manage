@@ -3,6 +3,7 @@
 /.idea
 .eslintcache
 .env
+./src/assets/css/main.css
 # dependencies
 /node_modules
 /.pnp
