@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from "react"
 import Modal from "react-modal"
-import addProject from "../utils/addProject"
-import fetchDB from "../utils/fetchDB"
-import editProjectItem from "../utils/editProjectItem"
-import "react-datepicker/dist/react-datepicker.css"
+import addProject from "../../../utils/projectPage/addProject"
+import fetchDB from "../../../utils/fetchDB"
+import editProjectItem from "../../../utils/projectPage/editProjectItem"
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers"
 import MomentUtils from "@date-io/moment"
 import moment from "moment"
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
+import { customModalStyles } from "./TaskModifyModal"
 
 Modal.setAppElement("#root")
 
@@ -47,7 +47,7 @@ const ModifyProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen, projectId
   }
 
   return (
-    <Modal isOpen={modalIsOpen}>
+    <Modal isOpen={modalIsOpen} style={customModalStyles}>
       <p>ProjectName:</p>
       <input
         placeholder={"ProjectName"}

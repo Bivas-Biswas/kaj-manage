@@ -1,10 +1,10 @@
 import React, { FC, useContext } from "react"
-import { Icolumn, Itask } from "../ts/interfaces"
+import { Icolumn, Itask } from "../../ts/interfaces"
 import { Draggable } from "react-beautiful-dnd"
-import { TaskGlobalContext } from "../context"
-import useToggle from "../hooks/useToggel"
-import TaskModifyModal from "./TaskModifyModal"
-import handleDeleteTask from "../utils/handleDeleteTask"
+import { TaskGlobalContext } from "../../context"
+import useToggle from "../../hooks/useToggel"
+import TaskModifyModal from "./helper/TaskModifyModal"
+import handleDeleteTask from "../../utils/taskPage/handleDeleteTask"
 
 interface Iprops {
   task: Itask
@@ -12,7 +12,7 @@ interface Iprops {
   column: Icolumn
 }
 
-const Task: FC<Iprops> = ({ task, index, column }) => {
+const Tasks: FC<Iprops> = ({ task, index, column }) => {
   const { projectId, taskData, setTaskData } = useContext(TaskGlobalContext)
   const [editTasktModalIsOpen, setEditTaskModalIsOpen] = useToggle(false)
   const [addNextTaskmodalIsOpen, setAddTaskModalIsOpen] = useToggle(false)
@@ -78,4 +78,4 @@ const Task: FC<Iprops> = ({ task, index, column }) => {
   )
 }
 
-export default Task
+export default Tasks

@@ -43,4 +43,9 @@ export type ThandleDeleteTask = {
 export type IprojectItem = {
   projectId: string
   projectName: string
+  updateDate: any
+  createdDate: any
+  endProjectDate: any
+  totalTask: number
+  totalColumns: number
 }

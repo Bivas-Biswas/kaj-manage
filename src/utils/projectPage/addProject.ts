@@ -1,6 +1,6 @@
 import { addDoc, collection } from "firebase/firestore"
-import db from "../config/fbConfg"
-import defaultData from "../data/defaultData"
+import db from "../../config/fbConfg"
+import defaultData from "../../data/defaultData"
 
 const addProject = async (input: string, endProjectDate: Date) => {
   const collectionRef = collection(db, "users")

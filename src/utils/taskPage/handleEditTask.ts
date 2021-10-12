@@ -1,7 +1,7 @@
-import { TcontextTaskData, TprojectId, TsetContextTaskData } from "../ts/types"
+import { TcontextTaskData, TprojectId, TsetContextTaskData } from "../../ts/types"
 import { doc, setDoc } from "firebase/firestore"
-import db from "../config/fbConfg"
-import { Itask } from "../ts/interfaces"
+import db from "../../config/fbConfg"
+import { Itask } from "../../ts/interfaces"
 
 type ThandleEditTask = {
   addNewData: Itask
@@ -15,14 +15,20 @@ const handleEditTask = async ({
   taskData,
   setTaskData,
 }: ThandleEditTask) => {
-  const title = addNewData.title
-  const content = addNewData.content
+  const title = addNewData.title === "" ? "Untitled" : addNewData.title
+  const content =
+    addNewData.content === "" ? "add your content here...." : addNewData.content
   const docRef = doc(db, "users", projectId)
+
+  // updateDate?:  Date
+  // createdDate?: Date
+  // endProjectDate?: Date
 
   const newTask = {
     ...taskData?.tasks[addNewData.id],
     title,
     content,
+    updateDate: new Date(),
   }
   const payload = {
     ...taskData,

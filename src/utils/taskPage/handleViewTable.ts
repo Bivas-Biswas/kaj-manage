@@ -1,6 +1,6 @@
-import { TcontextTaskData, TprojectId, TsetContextTaskData } from "../ts/types"
+import { TcontextTaskData, TprojectId, TsetContextTaskData } from "../../ts/types"
 import { doc, setDoc } from "firebase/firestore"
-import db from "../config/fbConfg"
+import db from "../../config/fbConfg"
 
 const handleChangeView = (
   projectId: TprojectId,

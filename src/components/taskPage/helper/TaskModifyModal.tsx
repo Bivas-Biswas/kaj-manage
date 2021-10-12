@@ -1,11 +1,11 @@
 import React, { FC, useContext, useEffect } from "react"
-import { Icolumn, Itask } from "../ts/interfaces"
-import { TaskGlobalContext } from "../context"
-import handleAddTaskNextLine from "../utils/handleAddTaskNextLine"
-import { ThandleAddTask } from "../ts/types"
-import handleEditTask from "../utils/handleEditTask"
+import { Icolumn, Itask } from "../../../ts/interfaces"
+import { TaskGlobalContext } from "../../../context"
+import handleAddTaskNextLine from "../../../utils/taskPage/handleAddTaskNextLine"
+import { ThandleAddTask } from "../../../ts/types"
+import handleEditTask from "../../../utils/taskPage/handleEditTask"
 import Modal from "react-modal"
-import useInputValue from "../hooks/useTextAreaValue"
+import useInputValue from "../../../hooks/useTextAreaValue"
 
 Modal.setAppElement("#root")
 

@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore"
-import db from "../config/fbConfg"
-import { ThandleOnDragEnd } from "../ts/types"
+import db from "../../config/fbConfg"
+import { ThandleOnDragEnd } from "../../ts/types"
 
 const handleOnDrag = ({ result, projectId, taskData, setTaskData }: ThandleOnDragEnd) => {
   const { destination, source, draggableId, type } = result

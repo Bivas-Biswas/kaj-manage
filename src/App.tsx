@@ -1,17 +1,19 @@
 import React, { FC } from "react"
-import Drag from "./components/Drag"
-import Allproject from "./pages/Allproject"
+import TaskPageDrag from "./pages/TaskPageDrag"
+import Project from "./pages/project"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Header from "./components/Header"
 
 const App: FC = () => {
   return (
     <Router>
+      <Header />
       <Switch>
         <Route exact path={"/"}>
-          <Allproject />
+          <Project />
         </Route>
         <Route path={"/:projectName/:projectId"}>
-          <Drag />
+          <TaskPageDrag />
         </Route>
       </Switch>
     </Router>

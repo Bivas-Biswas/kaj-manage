@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore"
-import db from "../config/fbConfg"
-import defaultData from "../data/defaultData"
+import db from "../../config/fbConfg"
+import defaultData from "../../data/defaultData"
 
 const editProjectItem = async (
   input: string,

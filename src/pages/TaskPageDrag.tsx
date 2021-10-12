@@ -1,17 +1,18 @@
 import React, { FC, useContext, useEffect } from "react"
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
-import Column from "./Column"
+import Column from "../components/taskPage/Column"
 import { Icolumn, Itask, TRouterParams } from "../ts/interfaces"
 import { TaskGlobalContext } from "../context"
-import handleChangeView from "../utils/handleViewTable"
-import handleOnDrag from "../utils/handleOnDrag"
+import handleChangeView from "../utils/taskPage/handleViewTable"
+import handleOnDrag from "../utils/taskPage/handleOnDrag"
 import useToggle from "../hooks/useToggel"
-import ColumnModifyModal from "./ColumnModifyModal"
-import updateDefaultData from "../utils/updateDefaultData"
+import ColumnModifyModal from "../components/taskPage/helper/ColumnModifyModal"
+import updateDefaultData from "../utils/taskPage/updateDefaultData"
 import { useParams, Link } from "react-router-dom"
 import fetchDB from "../utils/fetchDB"
+import SkeletonProjectPage from "../components/skeleton/SkeletonProjectPage"
 
-const Drag: FC = () => {
+const TaskPageDrag: FC = () => {
   const [modalIsOpen, setModalIsOpen] = useToggle(false)
   const [isDataFetched, setIsDataFetched] = useToggle(false)
   const { projectId } = useParams<TRouterParams>()
@@ -32,7 +33,7 @@ const Drag: FC = () => {
   }, [])
 
   if (!isDataFetched) {
-    return <h1>loading</h1>
+    return <SkeletonProjectPage />
   }
 
   return (
@@ -114,4 +115,4 @@ const Drag: FC = () => {
   )
 }
 
-export default Drag
+export default TaskPageDrag

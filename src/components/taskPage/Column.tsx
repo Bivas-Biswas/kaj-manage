@@ -1,12 +1,12 @@
 import React, { FC, useContext } from "react"
-import { Icolumn, Itask } from "../ts/interfaces"
-import Task from "./Task"
+import { Icolumn, Itask } from "../../ts/interfaces"
+import Tasks from "./Tasks"
 import { Draggable, Droppable } from "react-beautiful-dnd"
-import TaskModifyModal from "./TaskModifyModal"
-import useToggle from "../hooks/useToggel"
-import { TaskGlobalContext } from "../context"
-import handleDeleteColumn from "../utils/handleDeleteColumn"
-import ColumnModifyModal from "./ColumnModifyModal"
+import TaskModifyModal from "./helper/TaskModifyModal"
+import useToggle from "../../hooks/useToggel"
+import { TaskGlobalContext } from "../../context"
+import handleDeleteColumn from "../../utils/taskPage/handleDeleteColumn"
+import ColumnModifyModal from "./helper/ColumnModifyModal"
 
 interface Iprops {
   column: Icolumn
@@ -79,7 +79,7 @@ const Column: FC<Iprops> = ({ column, tasks, index }) => {
                   {...provided.droppableProps}
                 >
                   {tasks.map((task, index) => (
-                    <Task task={task} key={task.id} index={index} column={column} />
+                    <Tasks task={task} key={task.id} index={index} column={column} />
                   ))}
                   {provided.placeholder}
                 </div>

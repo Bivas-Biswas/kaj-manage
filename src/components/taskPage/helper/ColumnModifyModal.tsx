@@ -1,9 +1,9 @@
 import React, { FC, useContext, useEffect } from "react"
 import Modal from "react-modal"
-import useInputValue from "../hooks/useTextAreaValue"
-import { TaskGlobalContext } from "../context"
+import useInputValue from "../../../hooks/useTextAreaValue"
+import { TaskGlobalContext } from "../../../context"
 import { customModalStyles } from "./TaskModifyModal"
-import handleEditColumn from "../utils/handleEditColumn"
+import handleEditColumn from "../../../utils/taskPage/handleEditColumn"
 
 Modal.setAppElement("#root")
 

@@ -1,6 +1,6 @@
-import { ThandleAddTask } from "../ts/types"
+import { ThandleAddTask } from "../../ts/types"
 import { doc, setDoc } from "firebase/firestore"
-import db from "../config/fbConfg"
+import db from "../../config/fbConfg"
 
 const handleAddTaskNextLine = async ({
   currentId,
