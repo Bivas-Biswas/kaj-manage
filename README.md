@@ -4,12 +4,12 @@
 
 <!-- PROJECT LOGO -->
 
-# Kaj-Manage 🔩
+# 🔩 Kaj-Manage
 
 <br />
 <p align="center">
   <a href="https://github.com/Bivas-Biswas/kaj-manage">
-    <img src="https://github.com/Bivas-Biswas/kaj-manage/blob/main/readme/kajmanage_logo.png" alt="Logo" width="80px">
+    <img src="https://github.com/Bivas-Biswas/kaj-manage/blob/main/readme/kajmanage_logo.png" alt="Logo" width="40%">
   </a>
     <h3 align="center">KajManage</h3>
   <p align="center">
@@ -130,11 +130,11 @@ More Information of subfolder. Go this link [🔗](https://github.com/Bivas-Bisw
 
 ###
 
-## License
+## 👮‍♂️ License
 
 [![MIT License][license-shield]][license-url]
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 - [React-beautiful-dnd](https://www.npmjs.com/package/react-beautiful-dnd) is a react drag and drop libary. It's the most libary with proper accessibility.
   It helped to build the drag drop task manager
