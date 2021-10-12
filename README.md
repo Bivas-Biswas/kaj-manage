@@ -105,7 +105,6 @@ Feel free to add any interesting things that would be useful to you ✅
 |- readme             # Contains all helper file for the README.md
 |- src:               # Contains all source code for the React application.
     |
-    |-
     |- assets
         |- css        # Contains tailwind css
     |- components     # Contains all the components used within the app.
@@ -123,8 +122,8 @@ Feel free to add any interesting things that would be useful to you ✅
     |- react-app-env.d.ts
 ```
 
-More Information of subfolder. Go this link [🔗](https://github.com/Bivas-Biswas/kaj-manage/blob/main/subfolder_structure.md/)\
-\*\*\* Here You will be able to learn in depth details of the subfolders used in the project.
+More Information of subfolder. Go this [link🔗](https://github.com/Bivas-Biswas/kaj-manage/blob/main/subfolder_structure.md/)\
+Here You will be able to learn in depth details of the subfolders used in the project.
 
 <!-- LICENSE -->
 
