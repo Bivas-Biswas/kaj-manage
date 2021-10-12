@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import Drag from "./components/Drag"
 import Allproject from "./pages/Allproject"
-import { HashRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 const App: FC = () => {
   return (
