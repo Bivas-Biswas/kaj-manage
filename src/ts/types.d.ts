@@ -9,10 +9,10 @@ export type TprojectId = string
 
 export type TsetProjectId = React.Dispatch<React.SetStateAction<string>>
 
-export type TcontextTaskData = DocumentData | undefined | ItaskData
+export type TcontextTaskData = DocumentData | ItaskData
 
 export type TsetContextTaskData = React.Dispatch<
-  React.SetStateAction<DocumentData | undefined | ItaskData>
+  React.SetStateAction<DocumentData | ItaskData>
 >
 
 export type ThandleAddTask = {
@@ -38,4 +38,9 @@ export type ThandleDeleteTask = {
   column: Icolumn
   taskData: TcontextTaskData
   setTaskData: TsetContextTaskData
+}
+
+export type IprojectItem = {
+  projectId: string
+  projectName: string
 }

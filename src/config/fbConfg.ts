@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBBEta3Oy7gIcre8awGUotavO5Sdsz6PEc",
-  authDomain: "kaj-manage.firebaseapp.com",
-  projectId: "kaj-manage",
-  storageBucket: "kaj-manage.appspot.com",
-  messagingSenderId: "82921915752",
-  appId: "1:82921915752:web:66a7c7aaea215d4c62c2dd",
-  measurementId: "G-W6Y8ZNPR1X",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 }
 
 initializeApp(firebaseConfig)

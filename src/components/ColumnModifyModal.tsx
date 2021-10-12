@@ -20,7 +20,6 @@ const ColumnModify: FC<Iprops> = ({ columnId, btnType, modalIsOpen, setModalIsOp
   const { taskData, setTaskData, projectId } = useContext(TaskGlobalContext)
   useEffect(() => {
     if (btnType === "edit-column-btn") {
-      console.log(taskData?.columns[columnId])
       setAddNewData({ title: taskData?.columns[columnId]?.title })
     }
   }, [])

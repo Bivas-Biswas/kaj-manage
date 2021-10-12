@@ -25,3 +25,7 @@ export interface ItaskData {
   columnOrder: string[]
   viewTable: string
 }
+
+export interface TRouterParams {
+  projectId: string
+}

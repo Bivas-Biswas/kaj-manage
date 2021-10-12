@@ -1,9 +1,9 @@
 const defaultData = {
   tasks: {
-    "task-1": { id: "task-1", content: "Take out the Garbage" },
-    "task-2": { id: "task-2", content: "Watch my favorite show" },
-    "task-3": { id: "task-3", content: "Charge my phone" },
-    "task-4": { id: "task-4", content: "Cook dinner" },
+    "task-1": { id: "task-1", title: "Take out the Garbage", content: "no Content" },
+    "task-2": { id: "task-2", title: "Watch my favorite show", content: "no Content" },
+    "task-3": { id: "task-3", title: "Charge my phone", content: "no Content" },
+    "task-4": { id: "task-4", title: "Cook dinner", content: "no Content" },
   },
   columns: {
     "column-1": {
@@ -24,6 +24,12 @@ const defaultData = {
   },
   columnOrder: ["column-1", "column-2", "column-3"],
   viewTable: "horizontal",
+  projectName: "Untitled",
+  createdDate: new Date(),
+  updateDate: new Date(),
+  endProjectDate: new Date(),
+  totalTasks: 4,
+  totalColumns: 3,
 }
 
 export default defaultData

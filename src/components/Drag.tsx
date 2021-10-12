@@ -1,25 +1,44 @@
-import React, { FC, useContext } from "react"
+import React, { FC, useContext, useEffect } from "react"
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import Column from "./Column"
-import { Icolumn, Itask } from "../ts/interfaces"
+import { Icolumn, Itask, TRouterParams } from "../ts/interfaces"
 import { TaskGlobalContext } from "../context"
 import handleChangeView from "../utils/handleViewTable"
 import handleOnDrag from "../utils/handleOnDrag"
 import useToggle from "../hooks/useToggel"
 import ColumnModifyModal from "./ColumnModifyModal"
 import updateDefaultData from "../utils/updateDefaultData"
+import { useParams, Link } from "react-router-dom"
+import fetchDB from "../utils/fetchDB"
 
 const Drag: FC = () => {
-  const { taskData, setTaskData, projectId } = useContext(TaskGlobalContext)
-
   const [modalIsOpen, setModalIsOpen] = useToggle(false)
+  const [isDataFetched, setIsDataFetched] = useToggle(false)
+  const { projectId } = useParams<TRouterParams>()
 
-  if (!taskData || JSON.stringify(taskData) === "{}") {
+  const { setTaskData, taskData, setProjectId } = useContext(TaskGlobalContext)
+
+  useEffect(() => {
+    setProjectId(projectId)
+    async function fetch() {
+      const data = await fetchDB(projectId)
+      if (data !== undefined) {
+        setTaskData(data)
+        setIsDataFetched(true)
+      }
+    }
+    fetch().then(() => console.log("datafecthed"))
+  }, [])
+
+  if (!isDataFetched) {
     return <h1>loading</h1>
   }
 
   return (
     <>
+      <Link to={"/"}>
+        <button className={"bg-gray-400 p-2 m-2"}>Home</button>
+      </Link>
       <button className={"bg-yellow-100 p-2 m-2"} onClick={() => setModalIsOpen(true)}>
         Add column
       </button>

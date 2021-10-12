@@ -49,7 +49,7 @@ const Task: FC<Iprops> = ({ task, index, column }) => {
               snapshot.isDragging ? "bg-green-400" : "bg-white"
             }`}
           >
-            <p className={"break-all"}>{task.content}</p>
+            <p className={"break-all"}>{task.title}</p>
             <button
               className={"bg-yellow-100 p-1.5"}
               name={"edit"}

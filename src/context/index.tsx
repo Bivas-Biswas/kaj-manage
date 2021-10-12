@@ -1,6 +1,5 @@
-import React, { createContext, ReactNode, useEffect, useState } from "react"
+import React, { createContext, ReactNode, useState } from "react"
 import { DocumentData } from "@firebase/firestore-types"
-import fetchDB from "../utils/fetchDB"
 import {
   TcontextTaskData,
   TprojectId,
@@ -9,6 +8,7 @@ import {
 } from "../ts/types"
 import { ItaskData } from "../ts/interfaces"
 import { Direction } from "react-beautiful-dnd"
+import defaultData from "../data/defaultData"
 
 export interface ITaskContexProviderProps {
   children: ReactNode
@@ -26,22 +26,10 @@ export interface ITaskContextType {
 export const TaskGlobalContext = createContext({} as ITaskContextType)
 
 const UseTaskGlobalContext = ({ children }: ITaskContexProviderProps) => {
-  const [taskData, setTaskData] = useState<DocumentData | ItaskData | undefined>(
-    undefined
-  )
+  const [taskData, setTaskData] = useState<DocumentData | ItaskData>(defaultData)
   const [projectId, setProjectId] = useState<TprojectId>("projectId")
 
   const [view, setView] = useState<Direction | undefined>("vertical")
-
-  useEffect(() => {
-    async function fetch() {
-      const data = await fetchDB(projectId)
-      if (data !== undefined) {
-        setTaskData(data)
-      }
-    }
-    fetch()
-  }, [projectId])
 
   return (
     <TaskGlobalContext.Provider
