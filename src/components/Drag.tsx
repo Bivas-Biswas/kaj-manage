@@ -18,16 +18,17 @@ const Drag: FC = () => {
 
   const { setTaskData, taskData, setProjectId } = useContext(TaskGlobalContext)
 
+  const fetchUpdateTaskData = async () => {
+    const data = await fetchDB(projectId)
+    if (data !== undefined) {
+      setTaskData(data)
+      setIsDataFetched(true)
+    }
+  }
+
   useEffect(() => {
     setProjectId(projectId)
-    async function fetch() {
-      const data = await fetchDB(projectId)
-      if (data !== undefined) {
-        setTaskData(data)
-        setIsDataFetched(true)
-      }
-    }
-    fetch().then(() => console.log("datafecthed"))
+    fetchUpdateTaskData().then(() => console.log("datafecthed"))
   }, [])
 
   if (!isDataFetched) {

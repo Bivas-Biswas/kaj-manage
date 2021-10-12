@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from "react"
 import { collection, onSnapshot } from "firebase/firestore"
 import db from "../config/fbConfg"
-import NewProjectModal from "../components/smallComponents/NewProjectModal"
+import ModifyProjectModal from "../components/modifyProjectModal"
 import useToggle from "../hooks/useToggel"
-import ProjectSingleItem from "../components/smallComponents/ProjectSingleItem"
+import ProjectSingleItem from "../components/ProjectSingleItem"
 import { IprojectItem } from "../ts/types"
 
 function Allproject() {
   const [allProjectItems, setAllProjectItems] = useState<IprojectItem[]>([])
   const [modalIsOpen, setModalIsOpen] = useToggle(false)
+
+  const fetchAllProjectItems = async () => {
+    await onSnapshot(collection(db, "users"), (snapshot) => {
+      const newAllProjects = snapshot.docs.map((doc) => ({
+        projectId: doc.id,
+        projectName: doc.data().projectName,
+      }))
+      setAllProjectItems(newAllProjects)
+    })
+  }
+
   useEffect(() => {
-    async function fetchAllProjectItems() {
-      await onSnapshot(collection(db, "users"), (snapshot) => {
-        const newAllProjects = snapshot.docs.map((doc) => ({
-          projectId: doc.id,
-          projectName: doc.data().projectName,
-        }))
-        setAllProjectItems(newAllProjects)
-      })
-    }
-    fetchAllProjectItems()
+    fetchAllProjectItems().then(() => console.log("projectFetched"))
   }, [])
+
+  if (!allProjectItems) {
+    return <h1>loading</h1>
+  }
 
   return (
     <>
       {modalIsOpen && (
-        <NewProjectModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+        <ModifyProjectModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
       )}
       <button className={"bg-green-200 p-1.5 mr-2"} onClick={() => setModalIsOpen(true)}>
         Add New

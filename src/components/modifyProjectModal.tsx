@@ -1,28 +1,45 @@
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import Modal from "react-modal"
+import addProject from "../utils/addProject"
+import fetchDB from "../utils/fetchDB"
+import editProjectItem from "../utils/editProjectItem"
+import "react-datepicker/dist/react-datepicker.css"
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers"
 import MomentUtils from "@date-io/moment"
+import moment from "moment"
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
-import addProject from "../../utils/addProject"
-import moment from "moment/moment"
-import { customModalStyles } from "../TaskModifyModal"
 
 Modal.setAppElement("#root")
 
 interface Iprops {
   modalIsOpen: boolean
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  projectId?: string
 }
 
-const NewProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen }) => {
+const ModifyProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen, projectId }) => {
   let [input, setIput] = useState<string>("")
   const [endProjectDate, setEndProjectDate] = useState<Date>(new Date())
+  useEffect(() => {
+    if (projectId) {
+      ;(async () => {
+        const projectItem: any = await fetchDB(projectId)
+        setEndProjectDate(new Date(projectItem.endProjectDate.toDate()))
+        setIput(projectItem.projectName)
+      })()
+    }
+  }, [])
+
   const handleAddProject = () => {
     if (input === "" || input === undefined) {
       input = "Untitled"
     }
+    if (projectId) {
+      editProjectItem(input, endProjectDate, projectId)
+    } else {
+      addProject(input, endProjectDate)
+    }
     setModalIsOpen(false)
-    addProject(input, endProjectDate)
   }
 
   const handleOnChange = (date: MaterialUiPickersDate | null) => {
@@ -30,7 +47,7 @@ const NewProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen }) => {
   }
 
   return (
-    <Modal isOpen={modalIsOpen} style={customModalStyles}>
+    <Modal isOpen={modalIsOpen}>
       <p>ProjectName:</p>
       <input
         placeholder={"ProjectName"}
@@ -62,4 +79,4 @@ const NewProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen }) => {
   )
 }
 
-export default NewProjectModal
+export default ModifyProjectModal
