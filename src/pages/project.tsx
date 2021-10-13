@@ -8,6 +8,7 @@ import PageOuterLayout from "../layout/ProjectPage/PageOuterLayout"
 import fetchAllProjectItems from "../utils/projectPage/fetchAllProjectItems"
 import { BiAddToQueue } from "react-icons/all"
 import ProjectItemContainer from "../layout/ProjectPage/ItemsContainer"
+import OrderByComponent from "../components/projectPage/OrderByComponent"
 
 function Project() {
   const [allProjectItems, setAllProjectItems] = useState<IprojectItem[] | null>(null)
@@ -39,7 +40,8 @@ function Project() {
       <button
         className={`
         px-3 py-2 text-2xl flex flex-row items-center border-2 rounded-lg shadow-md
-        border-green-500 text-green-500 transtion
+        text-white bg-green-500
+        sm:border-green-500 sm:text-green-500 sm:bg-white transtion
         hover:text-white hover:bg-green-500 
         hover:transition-all hover:duration-1000 hover:ease-in-out 
         `}
@@ -50,7 +52,11 @@ function Project() {
         <BiAddToQueue className={"mr-1"} />
         Add New
       </button>
-      <h3 className={"mx-2 my-4 text-3xl underline"}>My Projects : </h3>
+      <div className={`grid-cols-1 lg:grid-cols-2 grid mb-2`}>
+        <h3 className={"my-2 text-3xl font-bold"}>My Projects</h3>
+        <OrderByComponent setAllProjectItems={setAllProjectItems} />
+      </div>
+
       <ProjectItemContainer>
         {allProjectItems &&
           allProjectItems.map((projectItem, index) => (

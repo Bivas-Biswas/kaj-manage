@@ -26,16 +26,17 @@ const DropDown: FC<Iprops> = ({ setIsOptionOpen, isOptionOpen, allOptions }) => 
     <>
       <div
         className={`
-      absolute w-full h-full top-0 left-0 rounded-lg z-20 
+      absolute w-full h-full top-0 left-0 rounded-lg z-40 
       bg-purple-700
-      bg-opacity-25
+      bg-opacity-50
+      sm:bg-opacity-25
       `}
       />
       <div
         className={`
-      absolute right-9 top-6 z-40 bg-white 
-      w-36 rounded-md shadow-lg ring-1 ring-black ring-opacity-5
-      divide-y-2 divide-purple-700 hover:divide-y-0
+      absolute top-4 right-1/4 sm:right-1/4 sm:top-6 z-40 bg-white 
+      w-36 rounded-md hover:rounded-sm shadow-lg 
+      divide-y-2 divide-purple-700
       `}
         ref={ref}
       >
@@ -45,7 +46,7 @@ const DropDown: FC<Iprops> = ({ setIsOptionOpen, isOptionOpen, allOptions }) => 
               ref={ref}
               key={index}
               className={`
-                block text-left pl-3 py-2 text-base text-purple-700 w-full 
+                block text-center py-2 text-base text-purple-700 w-full 
                 hover:bg-purple-500 hover:text-white focus:outline-none`}
               role="menuitem"
               onClick={() => handelOnClickOptions(index)}
@@ -53,6 +54,16 @@ const DropDown: FC<Iprops> = ({ setIsOptionOpen, isOptionOpen, allOptions }) => 
               {item.name}
             </button>
           ))}
+        <button
+          className={`
+                block text-center py-2 text-md text-red-400 w-full
+                hover:bg-red-400 hover:text-white focus:outline-none`}
+          onClick={() => {
+            setIsOptionOpen(!isOptionOpen)
+          }}
+        >
+          Close
+        </button>
       </div>
     </>
   )

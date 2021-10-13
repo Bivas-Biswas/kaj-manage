@@ -3604,6 +3604,14 @@ h3 {
   z-index: 0;
 }
 
+.z-1 {
+  z-index: 1;
+}
+
+.z-5 {
+  z-index: 5;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -3632,6 +3640,14 @@ h3 {
   z-index: 0;
 }
 
+.focus-within\:z-1:focus-within {
+  z-index: 1;
+}
+
+.focus-within\:z-5:focus-within {
+  z-index: 5;
+}
+
 .focus-within\:z-10:focus-within {
   z-index: 10;
 }
@@ -3658,6 +3674,14 @@ h3 {
 
 .focus\:z-0:focus {
   z-index: 0;
+}
+
+.focus\:z-1:focus {
+  z-index: 1;
+}
+
+.focus\:z-5:focus {
+  z-index: 5;
 }
 
 .focus\:z-10:focus {
@@ -26811,6 +26835,11 @@ h3 {
   outline-offset: 2px;
 }
 
+.outline-purple {
+  outline: 2px solid [object Object];
+  outline-offset: 2px;
+}
+
 .focus-within\:outline-none:focus-within {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -26826,6 +26855,11 @@ h3 {
   outline-offset: 2px;
 }
 
+.focus-within\:outline-purple:focus-within {
+  outline: 2px solid [object Object];
+  outline-offset: 2px;
+}
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -26838,6 +26872,11 @@ h3 {
 
 .focus\:outline-black:focus {
   outline: 2px dotted black;
+  outline-offset: 2px;
+}
+
+.focus\:outline-purple:focus {
+  outline: 2px solid [object Object];
   outline-offset: 2px;
 }
 
@@ -33133,6 +33172,14 @@ h3 {
     z-index: 0;
   }
 
+  .sm\:z-1 {
+    z-index: 1;
+  }
+
+  .sm\:z-5 {
+    z-index: 5;
+  }
+
   .sm\:z-10 {
     z-index: 10;
   }
@@ -33161,6 +33208,14 @@ h3 {
     z-index: 0;
   }
 
+  .sm\:focus-within\:z-1:focus-within {
+    z-index: 1;
+  }
+
+  .sm\:focus-within\:z-5:focus-within {
+    z-index: 5;
+  }
+
   .sm\:focus-within\:z-10:focus-within {
     z-index: 10;
   }
@@ -33187,6 +33242,14 @@ h3 {
 
   .sm\:focus\:z-0:focus {
     z-index: 0;
+  }
+
+  .sm\:focus\:z-1:focus {
+    z-index: 1;
+  }
+
+  .sm\:focus\:z-5:focus {
+    z-index: 5;
   }
 
   .sm\:focus\:z-10:focus {
@@ -56305,6 +56368,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .sm\:outline-purple {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .sm\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -56320,6 +56388,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .sm\:focus-within\:outline-purple:focus-within {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .sm\:focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -56332,6 +56405,11 @@ h3 {
 
   .sm\:focus\:outline-black:focus {
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .sm\:focus\:outline-purple:focus {
+    outline: 2px solid [object Object];
     outline-offset: 2px;
   }
 
@@ -62619,6 +62697,14 @@ h3 {
     z-index: 0;
   }
 
+  .md\:z-1 {
+    z-index: 1;
+  }
+
+  .md\:z-5 {
+    z-index: 5;
+  }
+
   .md\:z-10 {
     z-index: 10;
   }
@@ -62647,6 +62733,14 @@ h3 {
     z-index: 0;
   }
 
+  .md\:focus-within\:z-1:focus-within {
+    z-index: 1;
+  }
+
+  .md\:focus-within\:z-5:focus-within {
+    z-index: 5;
+  }
+
   .md\:focus-within\:z-10:focus-within {
     z-index: 10;
   }
@@ -62673,6 +62767,14 @@ h3 {
 
   .md\:focus\:z-0:focus {
     z-index: 0;
+  }
+
+  .md\:focus\:z-1:focus {
+    z-index: 1;
+  }
+
+  .md\:focus\:z-5:focus {
+    z-index: 5;
   }
 
   .md\:focus\:z-10:focus {
@@ -85791,6 +85893,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .md\:outline-purple {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .md\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -85806,6 +85913,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .md\:focus-within\:outline-purple:focus-within {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .md\:focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -85818,6 +85930,11 @@ h3 {
 
   .md\:focus\:outline-black:focus {
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .md\:focus\:outline-purple:focus {
+    outline: 2px solid [object Object];
     outline-offset: 2px;
   }
 
@@ -92105,6 +92222,14 @@ h3 {
     z-index: 0;
   }
 
+  .lg\:z-1 {
+    z-index: 1;
+  }
+
+  .lg\:z-5 {
+    z-index: 5;
+  }
+
   .lg\:z-10 {
     z-index: 10;
   }
@@ -92133,6 +92258,14 @@ h3 {
     z-index: 0;
   }
 
+  .lg\:focus-within\:z-1:focus-within {
+    z-index: 1;
+  }
+
+  .lg\:focus-within\:z-5:focus-within {
+    z-index: 5;
+  }
+
   .lg\:focus-within\:z-10:focus-within {
     z-index: 10;
   }
@@ -92159,6 +92292,14 @@ h3 {
 
   .lg\:focus\:z-0:focus {
     z-index: 0;
+  }
+
+  .lg\:focus\:z-1:focus {
+    z-index: 1;
+  }
+
+  .lg\:focus\:z-5:focus {
+    z-index: 5;
   }
 
   .lg\:focus\:z-10:focus {
@@ -115277,6 +115418,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .lg\:outline-purple {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .lg\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -115292,6 +115438,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .lg\:focus-within\:outline-purple:focus-within {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .lg\:focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -115304,6 +115455,11 @@ h3 {
 
   .lg\:focus\:outline-black:focus {
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .lg\:focus\:outline-purple:focus {
+    outline: 2px solid [object Object];
     outline-offset: 2px;
   }
 
@@ -121591,6 +121747,14 @@ h3 {
     z-index: 0;
   }
 
+  .xl\:z-1 {
+    z-index: 1;
+  }
+
+  .xl\:z-5 {
+    z-index: 5;
+  }
+
   .xl\:z-10 {
     z-index: 10;
   }
@@ -121619,6 +121783,14 @@ h3 {
     z-index: 0;
   }
 
+  .xl\:focus-within\:z-1:focus-within {
+    z-index: 1;
+  }
+
+  .xl\:focus-within\:z-5:focus-within {
+    z-index: 5;
+  }
+
   .xl\:focus-within\:z-10:focus-within {
     z-index: 10;
   }
@@ -121645,6 +121817,14 @@ h3 {
 
   .xl\:focus\:z-0:focus {
     z-index: 0;
+  }
+
+  .xl\:focus\:z-1:focus {
+    z-index: 1;
+  }
+
+  .xl\:focus\:z-5:focus {
+    z-index: 5;
   }
 
   .xl\:focus\:z-10:focus {
@@ -144763,6 +144943,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .xl\:outline-purple {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .xl\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -144778,6 +144963,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .xl\:focus-within\:outline-purple:focus-within {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .xl\:focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -144790,6 +144980,11 @@ h3 {
 
   .xl\:focus\:outline-black:focus {
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .xl\:focus\:outline-purple:focus {
+    outline: 2px solid [object Object];
     outline-offset: 2px;
   }
 
@@ -151077,6 +151272,14 @@ h3 {
     z-index: 0;
   }
 
+  .\32xl\:z-1 {
+    z-index: 1;
+  }
+
+  .\32xl\:z-5 {
+    z-index: 5;
+  }
+
   .\32xl\:z-10 {
     z-index: 10;
   }
@@ -151105,6 +151308,14 @@ h3 {
     z-index: 0;
   }
 
+  .\32xl\:focus-within\:z-1:focus-within {
+    z-index: 1;
+  }
+
+  .\32xl\:focus-within\:z-5:focus-within {
+    z-index: 5;
+  }
+
   .\32xl\:focus-within\:z-10:focus-within {
     z-index: 10;
   }
@@ -151131,6 +151342,14 @@ h3 {
 
   .\32xl\:focus\:z-0:focus {
     z-index: 0;
+  }
+
+  .\32xl\:focus\:z-1:focus {
+    z-index: 1;
+  }
+
+  .\32xl\:focus\:z-5:focus {
+    z-index: 5;
   }
 
   .\32xl\:focus\:z-10:focus {
@@ -174249,6 +174468,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .\32xl\:outline-purple {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .\32xl\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -174264,6 +174488,11 @@ h3 {
     outline-offset: 2px;
   }
 
+  .\32xl\:focus-within\:outline-purple:focus-within {
+    outline: 2px solid [object Object];
+    outline-offset: 2px;
+  }
+
   .\32xl\:focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -174276,6 +174505,11 @@ h3 {
 
   .\32xl\:focus\:outline-black:focus {
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .\32xl\:focus\:outline-purple:focus {
+    outline: 2px solid [object Object];
     outline-offset: 2px;
   }
 

@@ -597,6 +597,7 @@ module.exports = {
       none: ['2px solid transparent', '2px'],
       white: ['2px dotted white', '2px'],
       black: ['2px dotted black', '2px'],
+      purple: [`2px solid ${colors.violet}`, '2px']
     },
     padding: (theme) => theme('spacing'),
     placeholderColor: (theme) => theme('colors'),
@@ -798,6 +799,8 @@ module.exports = {
     zIndex: {
       auto: 'auto',
       0: '0',
+      1: '1',
+      5: '5',
       10: '10',
       20: '20',
       30: '30',

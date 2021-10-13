@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div
       className={
-        " flex flex-row filter drop-shadow-lg items-center justify-between px-2 py-3 mb-5 bg-purple-300 w-full "
+        " flex flex-row filter drop-shadow-lg items-center justify-between px-2 py-3 bg-purple-300 w-full "
       }
     >
       <Link to={"/"}>

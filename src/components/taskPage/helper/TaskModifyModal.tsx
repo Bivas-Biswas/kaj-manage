@@ -25,7 +25,16 @@ const intialAddNewData = {
   totalTask: 0,
 }
 
-export const customModalStyles = {
+export const customModalStyles: Modal.Styles | undefined = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
+    zIndex: 1000,
+  },
   content: {
     top: "50%",
     left: "50%",
@@ -81,29 +90,34 @@ const TaskModifyModal: FC<Iprops> = ({
 
   return (
     <Modal isOpen={modalIsOpen} style={customModalStyles}>
-      <h3 className={"text-3xl my-2"}>Title :</h3>
-      <textarea
-        ref={(el) => (textRef.current.title = el)}
-        onChange={onChange}
-        className={"rounded-md border-2 p-2 overflow-hidden "}
-        name={"title"}
-        value={addNewData.title}
-      />
-      <h3 className={"text-3xl my-3"}>Content :</h3>
-      <textarea
-        ref={(el) => (textRef.current.content = el)}
-        className={"rounded-md border-2 p-2 overflow-hidden"}
-        onChange={onChange}
-        name={"content"}
-        value={addNewData.content}
-      />
-      <div className={"my-2"}>
-        <button className={"bg-red-500 p-1.5 mr-2"} onClick={() => setModalIsOpen(false)}>
-          cancel
-        </button>
-        <button className={"bg-green-200 p-1.5 mr-2"} onClick={handleOnSaveTask}>
-          Save
-        </button>
+      <div className={"z-50 bg-red-200 w-full h-full"}>
+        <h3 className={"text-3xl text-red-600  my-2"}>Title :</h3>
+        <textarea
+          ref={(el) => (textRef.current.title = el)}
+          onChange={onChange}
+          className={"rounded-md border-2 p-2 overflow-hidden "}
+          name={"title"}
+          value={addNewData.title}
+        />
+        <h3 className={"text-3xl my-3"}>Content :</h3>
+        <textarea
+          ref={(el) => (textRef.current.content = el)}
+          className={"rounded-md border-2 p-2 overflow-hidden"}
+          onChange={onChange}
+          name={"content"}
+          value={addNewData.content}
+        />
+        <div className={"my-2"}>
+          <button
+            className={"bg-red-500 p-1.5 mr-2"}
+            onClick={() => setModalIsOpen(false)}
+          >
+            cancel
+          </button>
+          <button className={"bg-green-200 p-1.5 mr-2"} onClick={handleOnSaveTask}>
+            Save
+          </button>
+        </div>
       </div>
     </Modal>
   )

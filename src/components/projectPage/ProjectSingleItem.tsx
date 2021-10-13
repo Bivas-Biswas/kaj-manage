@@ -41,17 +41,21 @@ const ProjectSingleItem: FC<Iprops> = ({ projectItem }) => {
         placement={"top-end"}
         theme={"bg-red-200"}
       >
-        <button
+        <div
           className={`
         text-3xl absolute right-1 z-10 rounded-full p-0.5 transition
         hover:text-purple-600
         hover:duration-500 hover:ease-in-out
         `}
-          onClick={() => setIsOptionOpen(!isOptionOpen)}
+          onClick={(e) => {
+            setIsOptionOpen(!isOptionOpen)
+            e.stopPropagation()
+          }}
         >
           <FiMoreVertical />
-        </button>
+        </div>
       </Tippy>
+
       {isOptionOpen && (
         <DropDown
           allOptions={alloptions}
@@ -68,9 +72,10 @@ const ProjectSingleItem: FC<Iprops> = ({ projectItem }) => {
         <Tippy
           placement={"top"}
           arrow={false}
-          content={` Last Updated at ${moment(projectItem.updateDate.toDate()).format(
-            "l"
-          )}`}
+          content={` Last Updated at ${moment(
+            projectItem.updateDate.toDate(),
+            "YYYYMMDD"
+          ).fromNow()}`}
         >
           <p className={"text-xs my-1 inline-block"}>
             {moment(projectItem.updateDate.toDate(), "YYYYMMDD").fromNow()}

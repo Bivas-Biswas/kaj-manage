@@ -5,9 +5,9 @@ const ItemWrapper: FC = ({ children }) => {
     <div
       className={`
     p-2.5 rounded-lg shadow-sm w-full bg-white relative cursor-pointer 
-    transform transition subpixel-antialiased
-    hover:scale-105 hover:shadow-lg
-    hover:duration-500 hover:ease-in-out
+    sm:transform sm:transition subpixel-antialiased
+    sm:hover:scale-105 sm:hover:shadow-lg
+    sm:hover:duration-500 sm:hover:ease-in-out
     `}
     >
       {children}
