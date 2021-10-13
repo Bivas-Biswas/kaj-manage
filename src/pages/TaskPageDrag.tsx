@@ -85,7 +85,7 @@ const TaskPageDrag: FC = () => {
                     taskData?.viewTable === "horizontal"
                       ? "flex-row items-start"
                       : "flex-col items-center"
-                  } min-w-min`}
+                  } overflow-x min-h-90`}
                 >
                   {taskData.columnOrder.map((columnId: string, index: number) => {
                     const column: Icolumn = taskData.columns[columnId]
@@ -110,7 +110,6 @@ const TaskPageDrag: FC = () => {
           }}
         </Droppable>
       </DragDropContext>
-      <p className={"m-3"}>{JSON.stringify(taskData)}</p>
     </>
   )
 }

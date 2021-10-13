@@ -1,64 +1,63 @@
 import React, { useEffect, useState } from "react"
-import { collection, onSnapshot } from "firebase/firestore"
-import db from "../config/fbConfg"
 import useToggle from "../hooks/useToggel"
 import ProjectSingleItem from "../components/projectPage/ProjectSingleItem"
 import { IprojectItem } from "../ts/types"
-import ModifyProjectModal from "../components/taskPage/helper/ModifyProjectModal"
+import ModifyProjectModal from "../components/projectPage/helper/ModifyProjectModal"
 import SkeletonProjectPage from "../components/skeleton/SkeletonProjectPage"
-import ProjectPageOuterLayout from "../layout/ProjectPageOuterLayout"
+import PageOuterLayout from "../layout/ProjectPage/PageOuterLayout"
+import fetchAllProjectItems from "../utils/projectPage/fetchAllProjectItems"
+import { BiAddToQueue } from "react-icons/all"
+import ProjectItemContainer from "../layout/ProjectPage/ItemsContainer"
 
 function Project() {
   const [allProjectItems, setAllProjectItems] = useState<IprojectItem[] | null>(null)
   const [modalIsOpen, setModalIsOpen] = useToggle(false)
-  const [isLoading, setIsLoading] = useToggle(false)
   const [skeletonLoading, setSkeletonLoading] = useToggle(true)
-  const fetchAllProjectItems = async () => {
-    await onSnapshot(collection(db, "users"), (snapshot) => {
-      const newAllProjects = snapshot.docs.map((doc) => ({
-        projectId: doc.id,
-        projectName: doc.data().projectName,
-        updateDate: doc.data().updateDate,
-        createdDate: doc.data().createdDate,
-        endProjectDate: doc.data().endProjectDate,
-        totalTask: Object.keys(doc.data().tasks).length,
-        totalColumns: doc.data().columnOrder.length,
-      }))
-      setAllProjectItems(newAllProjects)
-    })
-  }
 
   useEffect(() => {
-    fetchAllProjectItems().then(() => console.log("projectFetched"))
-    setIsLoading(true)
+    fetchAllProjectItems({ setAllProjectItems })
     const timer = setTimeout(() => {
       setSkeletonLoading(false)
-    }, 500)
-    return () => clearTimeout(timer)
+    }, 1500)
+    return () => {
+      clearTimeout(timer)
+    }
   }, [])
 
-  if (!isLoading) {
-    return <SkeletonProjectPage />
-  } else if (skeletonLoading || allProjectItems === null) {
+  if (skeletonLoading || allProjectItems === null) {
     return <SkeletonProjectPage />
   }
 
   return (
-    <ProjectPageOuterLayout>
+    <PageOuterLayout>
       {modalIsOpen && (
-        <ModifyProjectModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+        <ModifyProjectModal
+          isModalEditOpen={modalIsOpen}
+          setIsModalEditOpen={setModalIsOpen}
+        />
       )}
-      <button className={"bg-green-200 p-1.5 m-2"} onClick={() => setModalIsOpen(true)}>
+      <button
+        className={`
+        px-3 py-2 text-2xl flex flex-row items-center border-2 rounded-lg shadow-md
+        border-green-500 text-green-500 transtion
+        hover:text-white hover:bg-green-500 
+        hover:transition-all hover:duration-1000 hover:ease-in-out 
+        `}
+        onClick={() => {
+          setModalIsOpen(true)
+        }}
+      >
+        <BiAddToQueue className={"mr-1"} />
         Add New
       </button>
-      <div className={"flex "}>
+      <h3 className={"mx-2 my-4 text-3xl underline"}>My Projects : </h3>
+      <ProjectItemContainer>
         {allProjectItems &&
           allProjectItems.map((projectItem, index) => (
             <ProjectSingleItem key={index} projectItem={projectItem} />
           ))}
-      </div>
-      <p className={"mx-auto"}>{JSON.stringify(allProjectItems)}</p>
-    </ProjectPageOuterLayout>
+      </ProjectItemContainer>
+    </PageOuterLayout>
   )
 }
 

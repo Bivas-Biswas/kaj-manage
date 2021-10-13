@@ -45,9 +45,9 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            className={`p-1 select-none my-1 flex justify-between items-center border-2 border-gray-500 ${
+            className={`p-3 select-none my-1 flex justify-between items-center border-2 border-gray-500 ${
               snapshot.isDragging ? "bg-green-400" : "bg-white"
-            }`}
+            } w-11/12`}
           >
             <p className={"break-all"}>{task.title}</p>
             <button

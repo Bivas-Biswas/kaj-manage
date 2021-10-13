@@ -7,17 +7,21 @@ import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers"
 import MomentUtils from "@date-io/moment"
 import moment from "moment"
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
-import { customModalStyles } from "./TaskModifyModal"
+import { customModalStyles } from "../../taskPage/helper/TaskModifyModal"
 
 Modal.setAppElement("#root")
 
 interface Iprops {
-  modalIsOpen: boolean
-  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  isModalEditOpen: boolean
+  setIsModalEditOpen: React.Dispatch<React.SetStateAction<boolean>>
   projectId?: string
 }
 
-const ModifyProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen, projectId }) => {
+const ModifyProjectModal: FC<Iprops> = ({
+  isModalEditOpen,
+  setIsModalEditOpen,
+  projectId,
+}) => {
   let [input, setIput] = useState<string>("")
   const [endProjectDate, setEndProjectDate] = useState<Date>(new Date())
   useEffect(() => {
@@ -39,7 +43,7 @@ const ModifyProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen, projectId
     } else {
       addProject(input, endProjectDate)
     }
-    setModalIsOpen(false)
+    setIsModalEditOpen(false)
   }
 
   const handleOnChange = (date: MaterialUiPickersDate | null) => {
@@ -47,7 +51,7 @@ const ModifyProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen, projectId
   }
 
   return (
-    <Modal isOpen={modalIsOpen} style={customModalStyles}>
+    <Modal isOpen={isModalEditOpen} style={customModalStyles}>
       <p>ProjectName:</p>
       <input
         placeholder={"ProjectName"}
@@ -68,7 +72,10 @@ const ModifyProjectModal: FC<Iprops> = ({ modalIsOpen, setModalIsOpen, projectId
         />
       </MuiPickersUtilsProvider>
       <div className={"my-2"}>
-        <button className={"bg-red-500 p-1.5 mr-2"} onClick={() => setModalIsOpen(false)}>
+        <button
+          className={"bg-red-500 p-1.5 mr-2"}
+          onClick={() => setIsModalEditOpen(false)}
+        >
           cancel
         </button>
         <button className={"bg-green-200 p-1.5 mr-2"} onClick={handleAddProject}>

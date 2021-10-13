@@ -1,24 +1,36 @@
-import React from "react"
+import React, { FC } from "react"
 import Skeleton from "react-loading-skeleton"
+import ItemWrapper from "../../../layout/ProjectPage/ItemWrapper"
 
-const SkeletonProjectItem = () => {
+const SkeletonProjectItem: FC = () => {
   return (
     <>
-      <div className={"w-56 shadow-md rounded-b p-2 my-2 mx-auto"}>
-        <div className={"w-full flex justify-between items-start flex-row"}>
-          <p className={"w-full"}>
-            <Skeleton height={"60px"} />
+      <ItemWrapper>
+        <p>
+          <Skeleton height={"0.75rem"} />
+        </p>
+        <p>
+          <Skeleton height={"2.25rem"} />
+        </p>
+
+        <div className={"flex flex-row justify-between my-1"}>
+          <p className={"w-4/12"}>
+            <Skeleton height={"0.75rem"} />
+          </p>
+          <p className={"w-3/12"}>
+            <Skeleton height={"0.75rem"} />
           </p>
         </div>
-        <div className={"mt-3 w-full flex flex-row justify-between"}>
+
+        <div className={"w-full flex flex-row justify-between"}>
           <p className={"w-5/12"}>
-            <Skeleton height={"30px"} />
+            <Skeleton height={"100%"} />
           </p>
           <p className={"w-5/12"}>
-            <Skeleton height={"30px"} />
+            <Skeleton height={"100%"} />
           </p>
         </div>
-      </div>
+      </ItemWrapper>
     </>
   )
 }

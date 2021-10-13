@@ -24,7 +24,7 @@ const Column: FC<Iprops> = ({ column, tasks, index }) => {
       <Draggable draggableId={column.id} index={index}>
         {(provided) => (
           <div
-            className={"border-solid border-2 m-2 p-2 w-11/12 bg-white"}
+            className={"border-solid border-2 m-2 p-2 bg-white"}
             {...provided.draggableProps}
             ref={provided.innerRef}
             {...provided.dragHandleProps}

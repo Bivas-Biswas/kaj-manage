@@ -60,6 +60,7 @@ module.exports = {
       56: '14rem',
       60: '15rem',
       64: '16rem',
+      70: '17rem',
       72: '18rem',
       80: '20rem',
       96: '24rem',
