@@ -42,6 +42,7 @@ const OrderByComponent: FC<Iprops> = ({ setAllProjectItems }) => {
           <option value="createdDate">By CreatedDate</option>
           <option value="updateDate">By UpdatedDate</option>
           <option value="endProjectDate">By EndDate</option>
+          <option value="projectName">By Name</option>
         </select>
       </div>
       <div className={"flex flex-col sm:flex-row sm:items-center"}>
