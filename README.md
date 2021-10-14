@@ -49,28 +49,38 @@ KajManage, A Task Managing App. We all know about [scrum](https://www.digite.com
 
 ## 📸 Showcase
 
-<!-- <table align="center">
+<table align="center">
     <tr>
         <td>
             <a href="https://bivas-biswas.github.io/kaj-manage">
                 <p align="center">
-                    <img src="assets/homepage.jpg" alt="homepage">
+                    <img src="readme/homepage.png" alt="homepage">
                     <p align="center">Home Page</p>
                 </p>
             </a>
         </td>
     </tr>
+    </table>
+    <table align="center">
     <tr>
         <td>
-            <a href="https://bivas-biswas.github.io/BrickBreakers">
+            <a href="https://bivas-biswas.github.io/kaj-manage">
                 <p align="center">
-                    <img src="assets/setting_page.jpg" alt="setting_page">
-                    <p align="center">Setting Page</p>
+                    <img src="readme/table.png" alt="table view">
+                    <p align="center">Board View</p>
+                </p>
+            </a>
+        </td>
+        <td>
+            <a href="https://bivas-biswas.github.io/kaj-manage">
+                <p align="center">
+                    <img src="readme/list.png" alt="list view">
+                    <p align="center">List View</p>
                 </p>
             </a>
         </td>
     </tr>
-</table> -->
+</table>
 
 ## 📑 Task [🔗](https://water-pin-778.notion.site/Devsnest-Internship-Task-57a456c235f64f968867acd5779d9b07)
 
@@ -95,6 +105,25 @@ Feel free to add any interesting things that would be useful to you ✅
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 ## ♨ Extra Features
+
+**HomePage**
+
+- separate task project.
+- filter option (by created date, by last updated date, by end date, by name) with 'asc' and 'desc'.
+- poject edit and delete option.
+
+**TaskPage**
+
+- board view, list view
+- modified field option
+- add task next
+
+**Both**
+
+- delete confirmation modal window
+- mobile responsive
+- show task or project's updated, created date.
+- good UI/UX
 
 ## 👷‍♂️ Basic Structure of the Project
 
@@ -122,8 +151,8 @@ Feel free to add any interesting things that would be useful to you ✅
     |- react-app-env.d.ts
 ```
 
-More Information of subfolder. Go this [link🔗](https://github.com/Bivas-Biswas/kaj-manage/blob/main/subfolder_structure.md/)\
-Here You will be able to learn in depth details of the subfolders used in the project.
+<!-- More Information of subfolder. Go this [link🔗](https://github.com/Bivas-Biswas/kaj-manage/blob/main/subfolder_structure.md/)\
+Here You will be able to learn in depth details of the subfolders used in the project. -->
 
 <!-- LICENSE -->
 
@@ -145,7 +174,7 @@ Here You will be able to learn in depth details of the subfolders used in the pr
   Husky runs the pre hooks and lint-staged tell him which file need to sees like a brother. In this project I used as when I committed, it checked all files prettier style and eslint problem. my lint-staged [🔗](https://github.com/Bivas-Biswas/kaj-manage/blob/main/package.json#L79-L82)
 - ⏲ [moment.js](https://momentjs.com/) is a Date Formatter. It helped me to convert TimeStram to date. Also some inbuild function `calender()` change format `2021-10-13T03:08:41+05:30` to `Today at 3:09 AM`
 - ⚓ Other packages [React Icons](https://react-icons.github.io/react-icons/) (helped to get free svg icons), [react-modal](https://github.com/reactjs/react-modal#react-modal) (helped to create modal easily), [react-loading-skeleton](https://github.com/dvtng/react-loading-skeleton#react-loading-skeleton) (helped to add loading skeleton).
-- Lastly Acknowledge to me. How I managed all packages. 💪
+- Lastly Acknowledge to me. How I managed all those packages. 💪
 
 [contributors-shield]: https://img.shields.io/github/contributors/Bivas-Biswas/kaj-manage.svg?style=for-the-badge
 [contributors-url]: https://github.com/Bivas-Biswas/kaj-manage/graphs/contributors
