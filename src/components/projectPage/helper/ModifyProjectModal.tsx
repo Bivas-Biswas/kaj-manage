@@ -52,35 +52,34 @@ const ModifyProjectModal: FC<Iprops> = ({
 
   return (
     <Modal isOpen={isModalEditOpen} style={customModalStyles}>
-      <p>ProjectName:</p>
-      <input
-        placeholder={"ProjectName"}
-        type="text"
-        value={input}
-        className={"p-1.5 border-2 my-2"}
-        onChange={(e) => {
-          setIput(e.target.value)
-        }}
-      />
-      <p>Project EndDate:</p>
-      <MuiPickersUtilsProvider utils={MomentUtils}>
-        <DateTimePicker
-          value={endProjectDate}
-          onChange={handleOnChange}
-          minDate={new Date()}
-          inputVariant={"outlined"}
+      <div className={"modal-wrapper "}>
+        <p className={"text-2xl"}>ProjectName :</p>
+        <input
+          placeholder={"ProjectName"}
+          type="text"
+          value={input}
+          className={"p-1.5 border-2 my-3 text-bold text-xl"}
+          onChange={(e) => {
+            setIput(e.target.value)
+          }}
         />
-      </MuiPickersUtilsProvider>
-      <div className={"my-2"}>
-        <button
-          className={"bg-red-500 p-1.5 mr-2"}
-          onClick={() => setIsModalEditOpen(false)}
-        >
-          cancel
-        </button>
-        <button className={"bg-green-200 p-1.5 mr-2"} onClick={handleAddProject}>
-          Save
-        </button>
+        <p className={"mb-3 text-2xl"}>Project EndDate :</p>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
+          <DateTimePicker
+            value={endProjectDate}
+            onChange={handleOnChange}
+            minDate={new Date()}
+            inputVariant={"outlined"}
+          />
+        </MuiPickersUtilsProvider>
+        <div className={"btn-wrapper"}>
+          <button className={"btn-secondary"} onClick={() => setIsModalEditOpen(false)}>
+            Cancel
+          </button>
+          <button className={"btn-primary"} onClick={handleAddProject}>
+            Save
+          </button>
+        </div>
       </div>
     </Modal>
   )

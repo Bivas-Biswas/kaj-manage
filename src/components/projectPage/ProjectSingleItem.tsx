@@ -24,8 +24,8 @@ const ProjectSingleItem: FC<Iprops> = ({ projectItem }) => {
   const [isModalEditOpen, setIsModalEditOpen] = useToggle(false)
 
   const alloptions = [
-    { name: "Edit", setter: setIsModalEditOpen },
-    { name: "Delete", setter: setIsModalDeleteOpen },
+    { name: "Edit", setter: setIsModalEditOpen, icon: "fa-edit" },
+    { name: "Delete", setter: setIsModalDeleteOpen, icon: "fa-trash-alt" },
   ]
 
   const handleProjectItemDelete = async () => {
@@ -47,9 +47,8 @@ const ProjectSingleItem: FC<Iprops> = ({ projectItem }) => {
         hover:text-purple-600
         hover:duration-500 hover:ease-in-out
         `}
-          onClick={(e) => {
+          onClick={() => {
             setIsOptionOpen(!isOptionOpen)
-            e.stopPropagation()
           }}
         >
           <FiMoreVertical />
@@ -82,7 +81,7 @@ const ProjectSingleItem: FC<Iprops> = ({ projectItem }) => {
           </p>
         </Tippy>
 
-        <h3 className={"text-4xl text-black"}>{projectItem.projectName}</h3>
+        <h3 className={"text-4xl text-black truncate"}>{projectItem.projectName}</h3>
         <div className={"flex flex-row justify-between my-2 text-sm "}>
           <p>Total Task : {projectItem.totalTask}</p>
           <p>Total Field : {projectItem.totalColumns}</p>
@@ -123,16 +122,27 @@ const ProjectSingleItem: FC<Iprops> = ({ projectItem }) => {
 
       {isModalDeleteOpen && (
         <Modal isOpen={true} style={customModalStyles}>
-          <p>Are You want to delete the file ?</p>
-          <button
-            className={"p-2 m-2 bg-green-200"}
-            onClick={() => setIsModalDeleteOpen(false)}
-          >
-            Cancel
-          </button>
-          <button className={"p-2 bg-red-500"} onClick={handleProjectItemDelete}>
-            Ok
-          </button>
+          <div className={"modal-wrapper"}>
+            <p className={"modal-heading"}>
+              Are You want to delete the project{" "}
+              <b>&apos;{projectItem.projectName}&apos;</b> ?
+            </p>
+            <p className={"modal-text"}>
+              Project have <b>{projectItem.totalTask}</b> task and{" "}
+              <b>{projectItem.totalColumns}</b> field.
+            </p>
+            <div className={"btn-wrapper"}>
+              <button
+                className={"btn-secondary"}
+                onClick={() => setIsModalDeleteOpen(false)}
+              >
+                Cancel
+              </button>
+              <button className={"w-20 btn-primary"} onClick={handleProjectItemDelete}>
+                Delete
+              </button>
+            </div>
+          </div>
         </Modal>
       )}
     </ItemWrapper>

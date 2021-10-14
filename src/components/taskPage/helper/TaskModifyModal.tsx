@@ -42,6 +42,8 @@ export const customModalStyles: Modal.Styles | undefined = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    border: "none",
+    padding: 0,
   },
 }
 

@@ -18,3 +18,24 @@
         @apply text-lg;
     }
 }
+
+@layer components {
+    .btn-primary{
+        @apply ml-6 min-w-24 font-semibold px-2 py-1.5  transition duration-500 ease-in-out border-2 border-purple-700 text-xl hover:text-purple-700 hover:bg-white rounded-sm text-white bg-purple-700;
+    }
+    .btn-secondary{
+        @apply font-semibold transition duration-200 ease-in-out text-purple-600 hover:text-purple-900;
+    }
+    .btn-wrapper{
+        @apply flex flex-row justify-end mt-6;
+    }
+    .modal-wrapper{
+        @apply rounded-lg border shadow-xl py-5 px-3 sm:py-8 sm:px-6 bg-white;
+    }
+    .modal-heading{
+        @apply text-xl sm:text-3xl text-center;
+    }
+    .modal-text{
+        @apply  text-center  text-gray-600 text-base mt-3;
+    }
+}
