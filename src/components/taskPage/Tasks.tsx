@@ -8,6 +8,8 @@ import handleDeleteTask from "../../utils/taskPage/handleDeleteTask"
 import { FiMoreVertical } from "react-icons/all"
 import DropDown from "../smallComponents/DropDown"
 import Modal from "react-modal"
+import Tippy from "@tippy.js/react"
+import moment from "moment/moment"
 
 interface Iprops {
   task: Itask
@@ -46,8 +48,8 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
             ${snapshot.isDragging ? "bg-purple-200" : "bg-white"}`}
           >
             <div
-              className={`flex relative items-center w-full  px-1.5 py-2 ${
-                taskData.viewTable === "horizontal" && "min-h-8 justify-center"
+              className={`flex flex-row relative items-center w-full  px-1.5 py-2 ${
+                taskData.viewTable === "horizontal" && "min-h-8 justify-center flex-col "
               }`}
             >
               <p
@@ -58,6 +60,39 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
               >
                 {task.title}
               </p>
+              {task && (
+                <>
+                  <div
+                    className={`
+                      cursor-pointer
+                      ${taskData.viewTable === "horizontal" && "justify-between"}
+                      flex flex-row  justify-end w-full absolute bottom-1 right-4 px-3`}
+                  >
+                    <Tippy
+                      content={`Last Updated ${moment(
+                        task.endProjectDate.toDate()
+                      ).calendar()}`}
+                      placement={"bottom"}
+                      arrow={false}
+                    >
+                      <p className={"text-xs my-1"}>
+                        {moment(task.updateDate.toDate()).format("MMM Do")}
+                      </p>
+                    </Tippy>
+                    <Tippy
+                      content={`Project created at ${moment(
+                        task.createdDate.toDate()
+                      ).calendar()}`}
+                      placement={"bottom"}
+                      arrow={false}
+                    >
+                      <p className={"text-xs my-1 ml-2"}>
+                        {moment(task.createdDate.toDate()).format("MMM Do")}
+                      </p>
+                    </Tippy>
+                  </div>
+                </>
+              )}
             </div>
             <button
               className={`

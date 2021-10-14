@@ -20,10 +20,6 @@ const handleEditTask = async ({
     addNewData.content === "" ? "add your content here...." : addNewData.content
   const docRef = doc(db, "users", projectId)
 
-  // updateDate?:  Date
-  // createdDate?: Date
-  // endProjectDate?: Date
-
   const newTask = {
     ...taskData?.tasks[addNewData.id],
     title,

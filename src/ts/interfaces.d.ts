@@ -3,9 +3,9 @@ export interface Itask {
   content?: string
   title?: string
   totalTask?: number
-  updateDate?: Date
-  createdDate?: Date
-  endProjectDate?: Date
+  updateDate: any
+  createdDate: any
+  endProjectDate: any
 }
 
 export interface Icolumn {

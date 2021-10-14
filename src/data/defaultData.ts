@@ -1,9 +1,37 @@
 const defaultData = {
   tasks: {
-    "task-1": { id: "task-1", title: "Take out the Garbage", content: "no Content" },
-    "task-2": { id: "task-2", title: "Watch my favorite show", content: "no Content" },
-    "task-3": { id: "task-3", title: "Charge my phone", content: "no Content" },
-    "task-4": { id: "task-4", title: "Cook dinner", content: "no Content" },
+    "task-1": {
+      id: "task-1",
+      title: "Take out the Garbage",
+      content: "no Content",
+      createdDate: new Date(),
+      updateDate: new Date(),
+      endProjectDate: new Date(),
+    },
+    "task-2": {
+      id: "task-2",
+      title: "Watch my favorite show",
+      content: "no Content",
+      createdDate: new Date(),
+      updateDate: new Date(),
+      endProjectDate: new Date(),
+    },
+    "task-3": {
+      id: "task-3",
+      title: "Charge my phone",
+      content: "no Content",
+      createdDate: new Date(),
+      updateDate: new Date(),
+      endProjectDate: new Date(),
+    },
+    "task-4": {
+      id: "task-4",
+      title: "Cook dinner",
+      content: "no Content",
+      createdDate: new Date(),
+      updateDate: new Date(),
+      endProjectDate: new Date(),
+    },
   },
   columns: {
     "column-1": {
