@@ -64,7 +64,11 @@ const Header = () => {
           />
         </svg>
       </Link>
-      <a href="/" target={"_blank"} rel="noreferrer">
+      <a
+        href="https://github.com/Bivas-Biswas/kaj-manage"
+        target={"_blank"}
+        rel="noreferrer"
+      >
         <GoMarkGithub className={"text-5xl hover:text-white text-black mr-4"} />
       </a>
     </div>
