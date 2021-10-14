@@ -45,7 +45,9 @@
 
 ## 📞 About The Project
 
-KajManage, A Task Managing App. We all know about [scrum](https://www.digite.com/agile/scrum-methodology/), The app helps use to create our own custom scum very easily. Also easy to maintain. We can divide task according our scrum. like most popular scrum is [Todo](https://blog.agileskills.de/en/todo-doing-done-and-the-three-scrum-artifacts/) - Todo, Doing Done
+KajManage, A Task Managing App. We all know about [scrum](https://www.digite.com/agile/scrum-methodology/), The app helps use to create our own custom scum very easily. Also easy to maintain. We can divide task according our scrum. like most popular scrum is [Todo](https://blog.agileskills.de/en/todo-doing-done-and-the-three-scrum-artifacts/) - Todo, Doing Done.
+
+Intresting Fact about Name - Kaj-bengali(Work), manage-eng(manage)
 
 ## 📸 Showcase
 
