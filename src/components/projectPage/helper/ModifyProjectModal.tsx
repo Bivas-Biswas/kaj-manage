@@ -15,12 +15,14 @@ interface Iprops {
   isModalEditOpen: boolean
   setIsModalEditOpen: React.Dispatch<React.SetStateAction<boolean>>
   projectId?: string
+  history?: any
 }
 
 const ModifyProjectModal: FC<Iprops> = ({
   isModalEditOpen,
   setIsModalEditOpen,
   projectId,
+  history,
 }) => {
   let [input, setIput] = useState<string>("")
   const [endProjectDate, setEndProjectDate] = useState<Date>(new Date())
@@ -40,6 +42,9 @@ const ModifyProjectModal: FC<Iprops> = ({
     }
     if (projectId) {
       editProjectItem(input, endProjectDate, projectId)
+      if (history) {
+        history.push(`/${input}/${projectId}`)
+      }
     } else {
       addProject(input, endProjectDate)
     }

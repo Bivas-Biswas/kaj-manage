@@ -92,8 +92,8 @@ const TaskModifyModal: FC<Iprops> = ({
 
   return (
     <Modal isOpen={modalIsOpen} style={customModalStyles}>
-      <div className={"z-50 bg-red-200 w-full h-full"}>
-        <h3 className={"text-3xl text-red-600  my-2"}>Title :</h3>
+      <div className={"modal-wrapper"}>
+        <h3 className={"modal-heading text-left"}>Field Name :</h3>
         <textarea
           ref={(el) => (textRef.current.title = el)}
           onChange={onChange}
@@ -101,7 +101,7 @@ const TaskModifyModal: FC<Iprops> = ({
           name={"title"}
           value={addNewData.title}
         />
-        <h3 className={"text-3xl my-3"}>Content :</h3>
+        <h3 className={"modal-heading text-left"}>Content :</h3>
         <textarea
           ref={(el) => (textRef.current.content = el)}
           className={"rounded-md border-2 p-2 overflow-hidden"}
@@ -109,14 +109,11 @@ const TaskModifyModal: FC<Iprops> = ({
           name={"content"}
           value={addNewData.content}
         />
-        <div className={"my-2"}>
-          <button
-            className={"bg-red-500 p-1.5 mr-2"}
-            onClick={() => setModalIsOpen(false)}
-          >
-            cancel
+        <div className={"btn-wrapper"}>
+          <button className={"btn-secondary"} onClick={() => setModalIsOpen(false)}>
+            Cancel
           </button>
-          <button className={"bg-green-200 p-1.5 mr-2"} onClick={handleOnSaveTask}>
+          <button className={"btn-primary"} onClick={handleOnSaveTask}>
             Save
           </button>
         </div>

@@ -49,22 +49,25 @@ const ColumnModify: FC<Iprops> = ({ columnId, btnType, modalIsOpen, setModalIsOp
 
   return (
     <Modal isOpen={modalIsOpen} style={customModalStyles}>
-      <h3 className={"text-3xl my-2"}>Title :</h3>
-      <textarea
-        ref={(el) => (textRef.current.title = el)}
-        onChange={onChange}
-        className={"rounded-md border-2 p-2 overflow-hidden "}
-        name={"title"}
-        value={addNewData.title}
-      />
+      <div className={"modal-wrapper"}>
+        <h3 className={"modal-heading mb-2 "}>Field Title :</h3>
+        <textarea
+          ref={(el) => (textRef.current.title = el)}
+          onChange={onChange}
+          className={"rounded-md border-2 p-2 overflow-hidden min-h-0"}
+          name={"title"}
+          value={addNewData.title}
+          placeholder={"Field Title..."}
+        />
 
-      <div className={"my-2"}>
-        <button className={"bg-red-500 p-1.5 mr-2"} onClick={() => setModalIsOpen(false)}>
-          cancel
-        </button>
-        <button className={"bg-green-200 p-1.5 mr-2"} onClick={handleOnSaveTask}>
-          Save
-        </button>
+        <div className={"btn-wrapper"}>
+          <button className={"btn-secondary"} onClick={() => setModalIsOpen(false)}>
+            Cancel
+          </button>
+          <button className={"btn-primary"} onClick={handleOnSaveTask}>
+            Save
+          </button>
+        </div>
       </div>
     </Modal>
   )

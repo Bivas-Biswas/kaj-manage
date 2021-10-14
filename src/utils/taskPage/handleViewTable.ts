@@ -5,11 +5,12 @@ import db from "../../config/fbConfg"
 const handleChangeView = (
   projectId: TprojectId,
   taskData: TcontextTaskData,
-  setTaskData: TsetContextTaskData
+  setTaskData: TsetContextTaskData,
+  view: string
 ) => {
   const docRef = doc(db, "users", projectId)
   let payload = {}
-  switch (taskData?.viewTable) {
+  switch (view) {
     case "horizontal":
       payload = {
         ...taskData,

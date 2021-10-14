@@ -27,8 +27,10 @@ export interface ItaskData {
   columns: IcolumnObj
   columnOrder: string[]
   viewTable: string
+  projectName: string
 }
 
 export interface TRouterParams {
   projectId: string
+  projectName: string
 }

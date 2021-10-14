@@ -541,6 +541,7 @@ module.exports = {
       0: '0px',
       full: '100%',
       screen: '100vh',
+      8: '8rem'
     },
     minWidth: {
       0: '0px',
@@ -548,6 +549,7 @@ module.exports = {
       min: 'min-content',
       max: 'max-content',
       "24": '5rem',
+      "col-min": '25rem'
     },
     objectPosition: {
       bottom: 'bottom',

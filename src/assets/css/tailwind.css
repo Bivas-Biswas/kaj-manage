@@ -8,15 +8,6 @@
     body{
         @apply bg-purple-100;
     }
-    h1 {
-        @apply text-2xl;
-    }
-    h2 {
-        @apply text-xl;
-    }
-    h3 {
-        @apply text-lg;
-    }
 }
 
 @layer components {
@@ -37,5 +28,15 @@
     }
     .modal-text{
         @apply  text-center  text-gray-600 text-base mt-3;
+    }
+    .btn-green{
+        @apply px-2 py-1 text-2xl flex flex-row items-center border-2 rounded-md shadow-md text-white bg-green-500 sm:border-green-500 sm:text-green-500 sm:bg-white transition transition-all hover:text-white hover:bg-green-500  duration-100 ease-in-out text-center inline-block;
+    }
+
+    .box-wrapper{
+        @apply p-2.5 rounded-lg shadow-sm w-full bg-white relative cursor-pointer
+        sm:transform transition subpixel-antialiased
+        sm:hover:scale-105 sm:hover:shadow-lg
+        sm:duration-200 sm:ease-in-out
     }
 }

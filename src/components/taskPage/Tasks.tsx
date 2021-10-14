@@ -3,8 +3,11 @@ import { Icolumn, Itask } from "../../ts/interfaces"
 import { Draggable } from "react-beautiful-dnd"
 import { TaskGlobalContext } from "../../context"
 import useToggle from "../../hooks/useToggel"
-import TaskModifyModal from "./helper/TaskModifyModal"
+import TaskModifyModal, { customModalStyles } from "./helper/TaskModifyModal"
 import handleDeleteTask from "../../utils/taskPage/handleDeleteTask"
+import { FiMoreVertical } from "react-icons/all"
+import DropDown from "../smallComponents/DropDown"
+import Modal from "react-modal"
 
 interface Iprops {
   task: Itask
@@ -16,9 +19,71 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
   const { projectId, taskData, setTaskData } = useContext(TaskGlobalContext)
   const [editTasktModalIsOpen, setEditTaskModalIsOpen] = useToggle(false)
   const [addNextTaskmodalIsOpen, setAddTaskModalIsOpen] = useToggle(false)
+  const [deleteTaskModal, setDeleteTaskModal] = useToggle(false)
+  const [isOptionOpen, setIsOptionOpen] = useToggle(false)
 
+  const alloptions = [
+    { name: "Edit", setter: setEditTaskModalIsOpen, icon: "fa-edit" },
+    { name: "Delete", setter: setDeleteTaskModal, icon: "fa-trash-alt" },
+    { name: "Add Next", setter: setAddTaskModalIsOpen, icon: "fa-plus" },
+  ]
   return (
     <>
+      <Draggable draggableId={task.id} index={index}>
+        {(provided, snapshot) => (
+          <div
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+            className={`
+                relative
+                font-semibold
+                rounded-lg shadow-sm flex flex-row select-none shadow-2xl 
+                sm:hover:shadow-lg
+                sm:duration-200 sm:ease-in-out
+                border
+                my-1
+            ${snapshot.isDragging ? "bg-purple-200" : "bg-white"}`}
+          >
+            <div
+              className={`flex relative items-center w-full  px-1.5 py-2 ${
+                taskData.viewTable === "horizontal" && "min-h-8 justify-center"
+              }`}
+            >
+              <p
+                className={`break-all pr-4
+                 ${taskData.viewTable === "horizontal" && "text-center w-72"}
+                
+                `}
+              >
+                {task.title}
+              </p>
+            </div>
+            <button
+              className={`
+                      text-xl absolute sm:text-3xl rounded-full p-0.5 ml-1.5 transition
+                      right-0
+                      top-1
+                      hover:text-purple-600
+                      hover:duration-500 hover:ease-in-out
+                      cursor-pointer`}
+              onClick={() => {
+                setIsOptionOpen(!isOptionOpen)
+              }}
+            >
+              <FiMoreVertical />
+            </button>
+            {isOptionOpen && (
+              <DropDown
+                allOptions={alloptions}
+                isOptionOpen={isOptionOpen}
+                setIsOptionOpen={setIsOptionOpen}
+              />
+            )}
+          </div>
+        )}
+      </Draggable>
+
       {editTasktModalIsOpen && (
         <TaskModifyModal
           btnType={"edit-task-btn"}
@@ -38,42 +103,32 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
           column={column}
         />
       )}
-
-      <Draggable draggableId={task.id} index={index}>
-        {(provided, snapshot) => (
-          <div
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            className={`p-3 select-none my-1 flex justify-between items-center border-2 border-gray-500 ${
-              snapshot.isDragging ? "bg-green-400" : "bg-white"
-            } w-11/12`}
-          >
-            <p className={"break-all"}>{task.title}</p>
-            <button
-              className={"bg-yellow-100 p-1.5"}
-              name={"edit"}
-              onClick={() => setEditTaskModalIsOpen(true)}
-            >
-              Edit
-            </button>
-            <button
-              className={"bg-red-400 p-1.5"}
-              onClick={() =>
-                handleDeleteTask({ task, projectId, column, taskData, setTaskData })
-              }
-            >
-              Delete
-            </button>
-            <button
-              className={"bg-yellow-100 p-1.5"}
-              onClick={() => setAddTaskModalIsOpen(true)}
-            >
-              Add Next
-            </button>
-          </div>
-        )}
-      </Draggable>
+      {deleteTaskModal && (
+        <>
+          <Modal isOpen={true} style={customModalStyles}>
+            <div className={"modal-wrapper"}>
+              <p className={"modal-heading"}>Are You want to delete this task ?</p>
+              <div className={"btn-wrapper"}>
+                <button
+                  className={"btn-secondary"}
+                  onClick={() => setDeleteTaskModal(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className={"w-20 btn-primary"}
+                  onClick={() => {
+                    setDeleteTaskModal(false)
+                    handleDeleteTask({ task, projectId, column, taskData, setTaskData })
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </Modal>
+        </>
+      )}
     </>
   )
 }

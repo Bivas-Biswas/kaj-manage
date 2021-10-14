@@ -1,17 +1,15 @@
 import React, { FC } from "react"
 import { IprojectItem } from "../../ts/types"
-import { doc, deleteDoc } from "firebase/firestore"
-import db from "../../config/fbConfg"
 import useToggle from "../../hooks/useToggel"
 import moment from "moment/moment"
 import { useHistory } from "react-router-dom"
 import ModifyProjectModal from "./helper/ModifyProjectModal"
 import Tippy from "@tippy.js/react"
 import { FiMoreVertical } from "react-icons/all"
-import ItemWrapper from "../../layout/ProjectPage/ItemWrapper"
 import DropDown from "../smallComponents/DropDown"
 import { customModalStyles } from "../taskPage/helper/TaskModifyModal"
 import Modal from "react-modal"
+import handleProjectItemDelete from "../../utils/handleProjectItemDelete"
 
 interface Iprops {
   projectItem: IprojectItem
@@ -28,14 +26,8 @@ const ProjectSingleItem: FC<Iprops> = ({ projectItem }) => {
     { name: "Delete", setter: setIsModalDeleteOpen, icon: "fa-trash-alt" },
   ]
 
-  const handleProjectItemDelete = async () => {
-    setIsModalDeleteOpen(false)
-    const docRef = doc(db, "users", projectItem.projectId)
-    await deleteDoc(docRef)
-  }
-
   return (
-    <ItemWrapper>
+    <div className={"box-wrapper"}>
       <Tippy
         content={"click for more options"}
         placement={"top-end"}
@@ -138,14 +130,19 @@ const ProjectSingleItem: FC<Iprops> = ({ projectItem }) => {
               >
                 Cancel
               </button>
-              <button className={"w-20 btn-primary"} onClick={handleProjectItemDelete}>
+              <button
+                className={"w-20 btn-primary"}
+                onClick={() =>
+                  handleProjectItemDelete(projectItem.projectId, setIsModalDeleteOpen)
+                }
+              >
                 Delete
               </button>
             </div>
           </div>
         </Modal>
       )}
-    </ItemWrapper>
+    </div>
   )
 }
 

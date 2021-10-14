@@ -27,7 +27,7 @@ const DropDown: FC<Iprops> = ({ setIsOptionOpen, isOptionOpen, allOptions }) => 
     <>
       <div
         className={`
-      absolute w-full h-full top-0 left-0 rounded-lg z-40 
+      absolute w-full h-full top-0 left-0 rounded-lg 
       bg-purple-700
       bg-opacity-50
       sm:bg-opacity-25

@@ -38,13 +38,7 @@ function Project() {
         />
       )}
       <button
-        className={`
-        px-3 py-2 text-2xl flex flex-row items-center border-2 rounded-lg shadow-md
-        text-white bg-green-500
-        sm:border-green-500 sm:text-green-500 sm:bg-white transtion
-        hover:text-white hover:bg-green-500 
-        hover:transition-all hover:duration-1000 hover:ease-in-out 
-        `}
+        className={`btn-green`}
         onClick={() => {
           setModalIsOpen(true)
         }}

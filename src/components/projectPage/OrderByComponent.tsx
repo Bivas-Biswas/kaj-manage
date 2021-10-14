@@ -25,7 +25,6 @@ const OrderByComponent: FC<Iprops> = ({ setAllProjectItems }) => {
         return
     }
     fetchAllProjectItems({ optionSort, optionField, setAllProjectItems })
-    console.log(optionField, optionSort)
   }
   return (
     <div

@@ -2,11 +2,15 @@ import React, { FC, useContext } from "react"
 import { Icolumn, Itask } from "../../ts/interfaces"
 import Tasks from "./Tasks"
 import { Draggable, Droppable } from "react-beautiful-dnd"
-import TaskModifyModal from "./helper/TaskModifyModal"
+import TaskModifyModal, { customModalStyles } from "./helper/TaskModifyModal"
 import useToggle from "../../hooks/useToggel"
 import { TaskGlobalContext } from "../../context"
 import handleDeleteColumn from "../../utils/taskPage/handleDeleteColumn"
 import ColumnModifyModal from "./helper/ColumnModifyModal"
+import DropDown from "../smallComponents/DropDown"
+import { FiMoreVertical, GrAdd } from "react-icons/all"
+import Modal from "react-modal"
+import Tippy from "@tippy.js/react"
 
 interface Iprops {
   column: Icolumn
@@ -17,35 +21,60 @@ interface Iprops {
 const Column: FC<Iprops> = ({ column, tasks, index }) => {
   const [addTaskmodalIsOpen, setAddTaskmodalIsOpen] = useToggle(false)
   const [editColumnmodalIsOpen, setEditColumnmodalIsOpen] = useToggle(false)
+  const [deleteColumnmodalIsOpen, setDeleteColumnmodalIsOpen] = useToggle(false)
+  const [isOptionOpen, setIsOptionOpen] = useToggle(false)
   const { taskData, setTaskData, projectId } = useContext(TaskGlobalContext)
 
+  const alloptions = [
+    { name: "Edit", setter: setEditColumnmodalIsOpen, icon: "fa-edit" },
+    { name: "Delete", setter: setDeleteColumnmodalIsOpen, icon: "fa-trash-alt" },
+  ]
   return (
     <>
       <Draggable draggableId={column.id} index={index}>
         {(provided) => (
           <div
-            className={"border-solid border-2 m-2 p-2 bg-white"}
+            className={"m-2 px-3 py-2 bg-white shadow-xl rounded-lg "}
             {...provided.draggableProps}
             ref={provided.innerRef}
             {...provided.dragHandleProps}
           >
-            <div className={"flex items-center"}>
-              <h1 className={"text-4xl mb-3 select-none"}>{column.title}</h1>
-              <p className={"mx-3"}>{column.taskIds.length}</p>
-              <button
-                className={"bg-red-50 p-1"}
-                onClick={() =>
-                  handleDeleteColumn({ column, taskData, projectId, setTaskData })
-                }
-              >
-                Del
-              </button>
-              <button
-                className={"bg-pink-400 p-1 ml-1.5"}
-                onClick={() => setEditColumnmodalIsOpen(true)}
-              >
-                Edit
-              </button>
+            <div className={"flex items-center justify-between"}>
+              <div className={"flex flex-row items-center"}>
+                <h1 className={"text-3xl sm:text-4xl mb-3 select-none"}>
+                  {column.title}
+                </h1>
+                <p className={"mx-3"}>{column.taskIds.length}</p>
+                <Tippy content={"Add Task"}>
+                  <button
+                    className={"text-2xl p-1 shadow-sm rounded-sm border hover:shadow-xl"}
+                    onClick={() => setAddTaskmodalIsOpen(false)}
+                  >
+                    <GrAdd />
+                  </button>
+                </Tippy>
+              </div>
+              <div className={"relative"}>
+                <button
+                  className={`text-xl sm:text-3xl rounded-full p-0.5 ml-1.5 transition
+                      hover:text-purple-600
+                      hover:duration-500 hover:ease-in-out
+                      cursor-pointer`}
+                  onClick={() => {
+                    setIsOptionOpen(!isOptionOpen)
+                  }}
+                >
+                  <FiMoreVertical />
+                </button>
+                {isOptionOpen && (
+                  <DropDown
+                    allOptions={alloptions}
+                    isOptionOpen={isOptionOpen}
+                    setIsOptionOpen={setIsOptionOpen}
+                  />
+                )}
+              </div>
+
               {editColumnmodalIsOpen && (
                 <ColumnModifyModal
                   columnId={column.id}
@@ -54,13 +83,42 @@ const Column: FC<Iprops> = ({ column, tasks, index }) => {
                   btnType={"edit-column-btn"}
                 />
               )}
+
+              {deleteColumnmodalIsOpen && (
+                <>
+                  <Modal isOpen={true} style={customModalStyles}>
+                    <div className={"modal-wrapper"}>
+                      <p className={"modal-heading"}>
+                        Are You want to delete this Field ?
+                      </p>
+                      <div className={"btn-wrapper"}>
+                        <button
+                          className={"btn-secondary"}
+                          onClick={() => setDeleteColumnmodalIsOpen(false)}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          className={"w-20 btn-primary"}
+                          onClick={() => {
+                            setDeleteColumnmodalIsOpen(false)
+                            handleDeleteColumn({
+                              column,
+                              taskData,
+                              projectId,
+                              setTaskData,
+                            })
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </Modal>
+                </>
+              )}
             </div>
-            <button
-              className={"bg-green-400 px-2 py-1"}
-              onClick={() => setAddTaskmodalIsOpen(false)}
-            >
-              Add
-            </button>
+
             {addTaskmodalIsOpen && (
               <TaskModifyModal
                 btnType={"add-task-btn"}
