@@ -9,7 +9,7 @@ import { FiMoreVertical } from "react-icons/all"
 import DropDown from "../smallComponents/DropDown"
 import Modal from "react-modal"
 import Tippy from "@tippy.js/react"
-import moment from "moment/moment"
+import moment from "moment"
 
 interface Iprops {
   task: Itask
@@ -23,12 +23,13 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
   const [addNextTaskmodalIsOpen, setAddTaskModalIsOpen] = useToggle(false)
   const [deleteTaskModal, setDeleteTaskModal] = useToggle(false)
   const [isOptionOpen, setIsOptionOpen] = useToggle(false)
-
+  console.log(task.updateDate)
   const alloptions = [
     { name: "Edit", setter: setEditTaskModalIsOpen, icon: "fa-edit" },
     { name: "Delete", setter: setDeleteTaskModal, icon: "fa-trash-alt" },
     { name: "Add Next", setter: setAddTaskModalIsOpen, icon: "fa-plus" },
   ]
+
   return (
     <>
       <Draggable draggableId={task.id} index={index}>
@@ -38,13 +39,8 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             className={`
-                relative
-                font-semibold
-                rounded-lg shadow-sm flex flex-row select-none shadow-2xl 
-                sm:hover:shadow-lg
-                sm:duration-200 sm:ease-in-out
-                border
-                my-1
+                relative font-semibold rounded-lg flex flex-row select-none shadow-2xl 
+                sm:hover:shadow-lg sm:duration-200 sm:ease-in-out border my-1
             ${snapshot.isDragging ? "bg-purple-200" : "bg-white"}`}
           >
             <div
@@ -60,17 +56,17 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
               >
                 {task.title}
               </p>
-              {task && (
+              {task.updateDate && (
                 <>
                   <div
                     className={`
-                      cursor-pointer
-                      ${taskData.viewTable === "horizontal" && "justify-between"}
-                      flex flex-row  justify-end w-full absolute bottom-1 right-4 px-3`}
+                      cursor-pointer flex flex-row justify-end w-full absolute bottom-1 px-8 ${
+                        taskData.viewTable === "horizontal" && "px-5 justify-between"
+                      }`}
                   >
                     <Tippy
                       content={`Last Updated ${moment(
-                        task.endProjectDate.toDate()
+                        taskData.tasks[task.id].updateDate.toDate()
                       ).calendar()}`}
                       placement={"bottom"}
                       arrow={false}
@@ -96,12 +92,9 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
             </div>
             <button
               className={`
-                      text-xl absolute sm:text-3xl rounded-full p-0.5 ml-1.5 transition
-                      right-0
-                      top-1
-                      hover:text-purple-600
-                      hover:duration-500 hover:ease-in-out
-                      cursor-pointer`}
+                text-xl absolute sm:text-3xl rounded-full p-0.5 ml-1.5 transition
+                right-0 top-1 hover:text-purple-600 hover:duration-500 hover:ease-in-out
+                cursor-pointer`}
               onClick={() => {
                 setIsOptionOpen(!isOptionOpen)
               }}
