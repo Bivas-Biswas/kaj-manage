@@ -23,7 +23,7 @@ const Tasks: FC<Iprops> = ({ task, index, column }) => {
   const [addNextTaskmodalIsOpen, setAddTaskModalIsOpen] = useToggle(false)
   const [deleteTaskModal, setDeleteTaskModal] = useToggle(false)
   const [isOptionOpen, setIsOptionOpen] = useToggle(false)
-  console.log(task.updateDate)
+  // console.log(task.updateDate)
   const alloptions = [
     { name: "Edit", setter: setEditTaskModalIsOpen, icon: "fa-edit" },
     { name: "Delete", setter: setDeleteTaskModal, icon: "fa-trash-alt" },
