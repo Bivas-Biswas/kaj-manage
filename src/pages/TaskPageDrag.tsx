@@ -33,7 +33,7 @@ const TaskPageDrag: FC = () => {
   const alloptions = [
     { name: "Edit", setter: setIsModalEditOpen, icon: "fa-edit" },
     { name: "Delete", setter: setIsModalDeleteOpen, icon: "fa-trash-alt" },
-    // { name: "Default", setter: setIsDefaultData, icon: "fa-table" },
+    { name: "Default", setter: setIsDefaultData, icon: "fa-table" },
   ]
 
   const fetchUpdateTaskData = async () => {
@@ -150,7 +150,7 @@ const TaskPageDrag: FC = () => {
                     <button
                       className={"btn-primary"}
                       onClick={() => {
-                        updateDefaultData({ projectId, setTaskData })
+                        updateDefaultData({ projectId, taskData, setTaskData })
                         setIsDefaultData(false)
                       }}
                     >

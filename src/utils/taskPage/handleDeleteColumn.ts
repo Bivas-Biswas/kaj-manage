@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc, Timestamp } from "firebase/firestore"
 import db from "../../config/fbConfg"
 import { Icolumn } from "../../ts/interfaces"
 import { TcontextTaskData, TprojectId, TsetContextTaskData } from "../../ts/types"
@@ -34,7 +34,7 @@ const handleDeleteColumn = ({
     columns: newColumns,
     columnOrder: newColumnOrder,
     tasks: copyOfTasks,
-    updateDate: new Date(),
+    updateDate: Timestamp.fromDate(new Date()),
   }
 
   setDoc(docRef, payload)

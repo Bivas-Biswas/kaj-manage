@@ -1,5 +1,5 @@
 import { ThandleAddTask } from "../../ts/types"
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc, Timestamp } from "firebase/firestore"
 import db from "../../config/fbConfg"
 
 const handleAddTaskNextLine = async ({
@@ -49,7 +49,7 @@ const handleAddTaskNextLine = async ({
         taskIds: columnId,
       },
     },
-    updateDate: new Date(),
+    updateDate: Timestamp.fromDate(new Date()),
   }
 
   setDoc(docRef, payload)
