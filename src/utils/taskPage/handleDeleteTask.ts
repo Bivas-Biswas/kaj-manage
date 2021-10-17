@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc, Timestamp } from "firebase/firestore"
 import db from "../../config/fbConfg"
 import { ThandleDeleteTask } from "../../ts/types"
 
@@ -25,7 +25,7 @@ const handleDeleteTask = async ({
         taskIds: newColumn,
       },
     },
-    updateDate: new Date(),
+    updateDate: Timestamp.fromDate(new Date()),
   }
 
   setDoc(docRef, payload)

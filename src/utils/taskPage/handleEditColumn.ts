@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc, Timestamp } from "firebase/firestore"
 import db from "../../config/fbConfg"
 import { TcontextTaskData, TprojectId, TsetContextTaskData } from "../../ts/types"
 
@@ -40,7 +40,7 @@ const handleEditColumn = ({
         [newColumnId]: newColumn,
       },
       columnOrder: [...taskData?.columnOrder, newColumnId],
-      updateDate: new Date(),
+      updateDate: Timestamp.fromDate(new Date()),
     }
   } else {
     // foredit-column-btn
@@ -53,7 +53,7 @@ const handleEditColumn = ({
           ...addNewData,
         },
       },
-      updateDate: new Date(),
+      updateDate: Timestamp.fromDate(new Date()),
     }
   }
   setDoc(docRef, payload)
