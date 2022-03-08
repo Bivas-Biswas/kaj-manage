@@ -34,7 +34,6 @@
 
 - [About The Project](#about-the-project)
   - [Showcase](#showcase)
-  - [Task](#task)
   - [Built With](#built-with)
   - [Extra Features](#extra-features)
 - [Basic Structure of the Project](#basic-structure-of-the-project)
@@ -83,20 +82,6 @@ Intresting Fact about Name - Kaj-bengali(Work), manage-eng(manage)
         </td>
     </tr>
 </table>
-
-## 📑 Task [🔗](https://water-pin-778.notion.site/Devsnest-Internship-Task-57a456c235f64f968867acd5779d9b07)
-
-You have to make a simple to-do list app that has two views.
-
-- A simple list view to list to-dos grouped by their status. ✅
-- A board view where to-dos are grouped by their status and the user can drag & drop an item between the different statuses (like a kanban board). ✅
-- A to-do should contain: ID, title, description, end date (optional), created at, updated at. ✅
-
-#### 💯 Bonus:
-
-- Add support for templates, so the user can create their own templates to save time when adding similar tasks ✅
-
-Feel free to add any interesting things that would be useful to you ✅
 
 ## 🛠 Built With
 
